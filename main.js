@@ -11,6 +11,14 @@
     return "€ " + (cents / 100).toFixed(2).replace(".", ",");
   };
 
+  // Escape menu text before it goes into innerHTML, so a stray &, < or quote
+  // in a name/description can't break the markup.
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+
   /* ---------------- Menu render ---------------- */
   var grid = document.getElementById("menu-grid");
   var filter = document.getElementById("menu-filter");
@@ -26,10 +34,10 @@
 
   function itemHtml(item) {
     var cls = "mitem" + (item.soldout ? " mitem--soldout" : "");
-    var desc = item.desc ? '<span class="mitem__desc">' + item.desc + "</span>" : "";
+    var desc = item.desc ? '<span class="mitem__desc">' + esc(item.desc) + "</span>" : "";
     return (
       '<li class="' + cls + '">' +
-        '<span class="mitem__name">' + item.name + "</span>" +
+        '<span class="mitem__name">' + esc(item.name) + "</span>" +
         priceHtml(item) +
         desc +
       "</li>"
@@ -40,10 +48,10 @@
     return (
       '<article class="mcard" id="cat-' + cat.id + '" data-cat="' + cat.id + '">' +
         '<header class="mcard__head">' +
-          '<h3 class="mcard__title">' + cat.title + "</h3>" +
-          (cat.tag ? '<span class="mcard__tag">' + cat.tag + "</span>" : "") +
+          '<h3 class="mcard__title">' + esc(cat.title) + "</h3>" +
+          (cat.tag ? '<span class="mcard__tag">' + esc(cat.tag) + "</span>" : "") +
         "</header>" +
-        (cat.blurb ? '<p class="mcard__blurb">' + cat.blurb + "</p>" : "") +
+        (cat.blurb ? '<p class="mcard__blurb">' + esc(cat.blurb) + "</p>" : "") +
         '<ul class="mlist">' + cat.items.map(itemHtml).join("") + "</ul>" +
       "</article>"
     );
@@ -59,7 +67,7 @@
     data.forEach(function (cat) {
       chips.push(
         '<button class="chip" role="tab" aria-selected="false" data-filter="' +
-        cat.id + '">' + cat.title + "</button>"
+        cat.id + '">' + esc(cat.title) + "</button>"
       );
     });
     filter.innerHTML = chips.join("");

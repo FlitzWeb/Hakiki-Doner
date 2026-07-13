@@ -1,17 +1,63 @@
+<!doctype html>
+<html lang="nl">
+<head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hakiki Döner · De echte döner in Eindhoven</title>
 <meta name="description" content="Hakiki Döner in Winkelcentrum Woensel, Eindhoven. De echte döner, dürüm, kapsalon en schotels, vers van het spit. Bestel online via Thuisbezorgd of bezoek onze zaak in Woensel." />
 <meta name="theme-color" content="#FAF6EF" />
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="restaurant" />
+<meta property="og:locale" content="nl_NL" />
+<meta property="og:site_name" content="Hakiki Döner" />
+<meta property="og:title" content="Hakiki Döner · De echte döner in Eindhoven" />
+<meta property="og:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
+<meta property="og:url" content="https://hakiki.nl/" />
+<meta property="og:image" content="https://hakiki.nl/assets/photos/hero.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Hakiki Döner · De echte döner in Eindhoven" />
+<meta name="twitter:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
+<meta name="twitter:image" content="https://hakiki.nl/assets/photos/hero.jpg" />
+
 <link rel="icon" href="assets/hakiki-logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 
-<a class="skip-link" href="#menu">Direct naar het menu</a>
+<!-- Structured data: lokaal restaurant -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Hakiki Döner",
+  "image": "https://hakiki.nl/assets/photos/hero.jpg",
+  "url": "https://hakiki.nl/",
+  "telephone": "+31402483606",
+  "servesCuisine": ["Turks", "Döner", "Kebab"],
+  "priceRange": "€",
+  "menu": "https://www.thuisbezorgd.nl/en/menu/hakiki-doner",
+  "acceptsReservations": "False",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Winkelcentrum Woensel 414",
+    "postalCode": "5625 AG",
+    "addressLocality": "Eindhoven",
+    "addressCountry": "NL"
+  },
+  "sameAs": ["https://www.instagram.com/hakiki_doner"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"], "opens": "10:00", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:00", "closes": "21:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "20:00" }
+  ]
+}
+</script>
+</head>
+<body>
 
-<div class="frame" aria-hidden="true"></div>
+<a class="skip-link" href="#menu">Direct naar het menu</a>
 
 <div class="shell">
   <!-- ===== NAV ===== -->
@@ -80,7 +126,6 @@
           <img src="assets/photos/team.jpg" alt="Het team van Hakiki Döner achter de toonbank" width="1200" height="1600" />
         </figure>
         <div class="story__copy">
-          <span class="pill">Wat betekent Hakiki?</span>
           <h2 class="h2">Hakiki betekent <span class="serif-it">de echte</span>.</h2>
           <p>
             Bij Hakiki Döner in Winkelcentrum Woensel staat kwaliteit voorop. Ons vlees gaart de hele
@@ -105,19 +150,18 @@
     <section class="menu" id="menu">
       <div class="container">
         <div class="section-head section-head--center">
-          <span class="pill">Onze menukaart</span>
           <h2 class="h2">Ontdek onze specialiteiten</h2>
           <p class="section-lead">
             Onze volledige menukaart. De vermelde prijzen zijn richtprijzen; bestel online voor de
             actuele prijzen en alle extra's.
           </p>
-          <button class="btn btn--pill menu__toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-collapse">
-            <span class="menu__toggle-label">Toon de menukaart</span>
+          <button class="btn btn--pill menu__toggle" id="menu-toggle" type="button" aria-expanded="true" aria-controls="menu-collapse">
+            <span class="menu__toggle-label">Verberg de menukaart</span>
             <span class="menu__toggle-icon" aria-hidden="true">▾</span>
           </button>
         </div>
 
-        <div id="menu-collapse" hidden>
+        <div id="menu-collapse">
           <div class="menu__filter" id="menu-filter" role="tablist" aria-label="Filter op categorie"></div>
           <div class="menu__grid" id="menu-grid"></div>
         </div>
@@ -132,7 +176,6 @@
     <section class="band">
       <div class="container band__grid">
         <div class="band__copy">
-          <span class="pill pill--light">Eenvoudig bestellen</span>
           <h2 class="h2 h2--light">Bestel eenvoudig online</h2>
           <p>Bestel via Thuisbezorgd en laat uw bestelling thuisbezorgen, of bezoek onze zaak in Winkelcentrum Woensel.</p>
           <a class="btn btn--white" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestel op Thuisbezorgd →</a>
@@ -148,7 +191,6 @@
     <section class="gallery" id="sfeer">
       <div class="container">
         <div class="section-head section-head--center">
-          <span class="pill pill--light">Een feest voor het oog</span>
           <h2 class="h2 h2--light">Proef de sfeer</h2>
           <p class="section-lead section-lead--light">Binnenkort tonen wij hier professionele foto's van onze gerechten en onze zaak.</p>
         </div>
@@ -167,25 +209,24 @@
     <section class="reviews" id="reviews">
       <div class="container">
         <div class="section-head">
-          <span class="pill">Klanten aan het woord</span>
           <h2 class="h2">Waar elk bezoek een goede<br />herinnering wordt</h2>
-          <p class="section-lead">Hier komen beoordelingen van onze klanten, bijvoorbeeld van onze Thuisbezorgd- of Google-pagina.</p>
+          <p class="section-lead">Beoordeeld met <strong>4,3 sterren</strong> op basis van ruim 470 recensies op Google. Een greep uit wat onze gasten zeggen.</p>
         </div>
         <div class="reviews__grid">
           <figure class="review">
             <div class="review__stars" aria-label="5 van 5 sterren">★★★★★</div>
-            <blockquote>Hier komt een beoordeling van een klant.</blockquote>
-            <figcaption><span class="review__name">Naam klant</span><span class="review__place">Eindhoven</span></figcaption>
+            <blockquote>Gister voor het eerst na jaren gegeten, echt super goed en veel en vers. Na een stuk rijden nog steeds goed warm. Ga hier zeker vaker terug!</blockquote>
+            <figcaption><span class="review__name">RW</span><span class="review__place">Google-recensie</span></figcaption>
           </figure>
           <figure class="review review--dark">
             <div class="review__stars" aria-label="5 van 5 sterren">★★★★★</div>
-            <blockquote>Hier komt een uitgelichte beoordeling.</blockquote>
-            <figcaption><span class="review__name">Naam klant</span><span class="review__place">Eindhoven</span></figcaption>
+            <blockquote>Topkwaliteit aan mensen die hier het eten voorbereiden. Het vlees dat bereid wordt is van topkwaliteit en het eten daarmee heerlijk. Aan eenieder aan te raden!</blockquote>
+            <figcaption><span class="review__name">Harun Ö.</span><span class="review__place">Google-recensie</span></figcaption>
           </figure>
           <figure class="review">
             <div class="review__stars" aria-label="5 van 5 sterren">★★★★★</div>
-            <blockquote>Hier komt een beoordeling van een klant.</blockquote>
-            <figcaption><span class="review__name">Naam klant</span><span class="review__place">Eindhoven</span></figcaption>
+            <blockquote>Top kwaliteit en top service. Eten besteld, lekker warm en op tijd geleverd.</blockquote>
+            <figcaption><span class="review__name">Berat K.</span><span class="review__place">Google-recensie</span></figcaption>
           </figure>
         </div>
       </div>
@@ -195,7 +236,6 @@
     <section class="find" id="vind-ons">
       <div class="container find__grid">
         <div class="find__info">
-          <span class="pill">Vind ons</span>
           <h2 class="h2">Bezoek ons in Woensel</h2>
 
           <div class="find__block">
@@ -253,7 +293,6 @@
           </div>
         </div>
       </div>
-      <div class="footer__wordmark" aria-hidden="true">HAKIKI<span>.</span></div>
       <div class="footer__bar">
         <span>© <span data-role="year"></span> Hakiki Döner</span>
         <a href="#top">Terug naar boven ↑</a>
@@ -264,3 +303,11 @@
 
 <script src="menu-data.js"></script>
 <script src="main.js"></script>
+
+<!-- Vercel Web Analytics + Speed Insights -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>
