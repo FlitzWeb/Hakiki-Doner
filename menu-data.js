@@ -1,7 +1,9 @@
 /* Hakiki Döner - menukaart data
    Prijzen in centen om afrondingsfouten te vermijden; render als € x,xx.
    from:true  -> "vanaf"
-   soldout:true -> tijdelijk niet beschikbaar (geen prijs) */
+   Alleen beschikbare gerechten staan hier. Items die op Thuisbezorgd
+   "uitverkocht / niet beschikbaar" zijn, worden weggelaten.
+   Bijwerken kan met tools/sync-menu.mjs (zie tools/README.md). */
 
 window.HAKIKI_MENU = [
   {
@@ -26,9 +28,7 @@ window.HAKIKI_MENU = [
       { name: "Broodje kipfilet XL", price: 1100 },
       { name: "Broodje yaprak", price: 1000 },
       { name: "Broodje yaprak XL", price: 1200 },
-      { name: "Broodje hamburger", price: 500, desc: "Rond Turks broodje met sla, tomaat en komkommer" },
-      { name: "Broodje Hakiki", soldout: true },
-      { name: "Broodje Hakiki super", soldout: true }
+      { name: "Broodje hamburger", price: 500, desc: "Rond Turks broodje met sla, tomaat en komkommer" }
     ]
   },
   {
@@ -37,12 +37,23 @@ window.HAKIKI_MENU = [
     tag: "Gerold in dun brood",
     blurb: "Dunne yufka wrap, strak gerold rond vlees, groenten en saus.",
     items: [
+      { name: "Dürüm döner", price: 800 },
+      { name: "Dürüm döner XL", price: 1000 },
+      { name: "Dürüm kipdöner", price: 800 },
+      { name: "Dürüm kipdöner XL", price: 1000 },
+      { name: "Dürüm falafel", price: 800 },
+      { name: "Dürüm falafel XL", price: 1000 },
+      { name: "Dürüm adana", price: 850 },
+      { name: "Dürüm adana XL", price: 1050 },
+      { name: "Dürüm kipfilet", price: 900 },
+      { name: "Dürüm kipfilet XL", price: 1100 },
+      { name: "Dürüm shoarma", price: 900 },
+      { name: "Dürüm shoarma XL", price: 1100 },
       { name: "Dürüm gyros", price: 900 },
       { name: "Dürüm gyros XL", price: 1100 },
       { name: "Dürüm yaprak", price: 1000 },
       { name: "Dürüm yaprak XL", price: 1200 },
-      { name: "Dürüm sjaslik", price: 1000 },
-      { name: "Dürüm Hakiki", soldout: true }
+      { name: "Dürüm sjaslik", price: 1000 }
     ]
   },
   {
@@ -51,9 +62,9 @@ window.HAKIKI_MENU = [
     tag: "Met friet & salade",
     blurb: "Ruim bord met vlees naar keuze, verse friet, salade en saus.",
     items: [
+      { name: "Schotel hamburger", price: 1200, from: true },
       { name: "Schotel döner", price: 1500, from: true },
       { name: "Schotel kipdöner", price: 1500, from: true },
-      { name: "Schotel hamburger", price: 1200, from: true },
       { name: "Schotel falafel", price: 1500, from: true, desc: "10 stuks" },
       { name: "Schotel adana", price: 1650, from: true },
       { name: "Schotel kipfilet", price: 1650, from: true },
@@ -67,8 +78,7 @@ window.HAKIKI_MENU = [
       { name: "Schotel shoarma champignons", price: 1700, from: true },
       { name: "Schotel kipfilet ananas", price: 1750, from: true },
       { name: "Schotel shoarma ananas", price: 1750, from: true },
-      { name: "Schotel kipnuggets", price: 1200, from: true, desc: "10 stuks" },
-      { name: "Schotel Hakiki", soldout: true }
+      { name: "Schotel kipnuggets", price: 1200, from: true, desc: "10 stuks" }
     ]
   },
   {
@@ -77,16 +87,15 @@ window.HAKIKI_MENU = [
     tag: "Extra gebakken groenten",
     blurb: "Onze schotels met gebakken champignons, paprika en uien.",
     items: [
+      { name: "Schotel hamburger speciaal", price: 1400, from: true },
       { name: "Schotel döner speciaal", price: 1700, from: true },
       { name: "Schotel kipdöner speciaal", price: 1700, from: true },
-      { name: "Schotel hamburger speciaal", price: 1400, from: true },
       { name: "Schotel adana speciaal", price: 1850, from: true },
       { name: "Schotel kipfilet speciaal", price: 1850, from: true },
       { name: "Schotel gyros speciaal", price: 1850, from: true },
       { name: "Schotel sjasliek speciaal", price: 1850, from: true },
       { name: "Schotel shoarma speciaal", price: 1850, from: true },
-      { name: "Schotel yaprak speciaal", price: 2050, from: true },
-      { name: "Schotel Hakiki speciaal", soldout: true }
+      { name: "Schotel yaprak speciaal", price: 2050, from: true }
     ]
   },
   {
@@ -110,20 +119,19 @@ window.HAKIKI_MENU = [
       { name: "Kapsalon döner", price: 1250 },
       { name: "Kapsalon kipdöner", price: 1250 },
       { name: "Kapsalon falafel", price: 1250 },
-      { name: "Kapsalon frikandel", price: 1250 },
-      { name: "Kapsalon mix", price: 1350, desc: "Mix van kip- en kalfsdöner" },
       { name: "Kapsalon shoarma", price: 1400 },
       { name: "Kapsalon kipfilet", price: 1400 },
       { name: "Kapsalon yaprak", price: 1500 },
+      { name: "Kapsalon frikandel", price: 1250 },
+      { name: "Kapsalon mix", price: 1350, desc: "Mix van kip- en kalfsdöner" },
       { name: "Kapsalon döner XL", price: 1500 },
       { name: "Kapsalon kipdöner XL", price: 1500 },
       { name: "Kapsalon falafel XL", price: 1500 },
-      { name: "Kapsalon frikandel XL", price: 1500 },
-      { name: "Kapsalon mix XL", price: 1600, desc: "Mix van kip- en kalfsdöner" },
       { name: "Kapsalon shoarma XL", price: 1650 },
       { name: "Kapsalon kipfilet XL", price: 1650 },
       { name: "Kapsalon yaprak XL", price: 1750 },
-      { name: "Kapsalon sucuk XL", soldout: true }
+      { name: "Kapsalon frikandel XL", price: 1500 },
+      { name: "Kapsalon mix XL", price: 1600, desc: "Mix van kip- en kalfsdöner" }
     ]
   },
   {
@@ -155,13 +163,17 @@ window.HAKIKI_MENU = [
     tag: "Wings & strips",
     blurb: "Krokante hotwings en chicken strips, los of als menu met friet.",
     items: [
+      { name: "Hotwings 3 stuks", price: 450, from: true },
+      { name: "Hotwings 6 stuks", price: 750, from: true },
+      { name: "Hotwings 10 stuks", price: 1000, from: true },
+      { name: "Hotwings 15 stuks", price: 1400, from: true },
       { name: "Hotwings 20 stuks", price: 1750, from: true },
       { name: "Hotwings menu", price: 1250, from: true, desc: "6 hotwings met friet en frisdrank" },
+      { name: "Bucket 1", price: 1250, from: true, desc: "4 kipnuggets, 3 hotwings en 3 chicken strips met friet en frisdrank" },
+      { name: "Bucket 2", price: 2000, from: true, desc: "8 kipnuggets, 8 hotwings en 8 chicken strips met friet en 2 frisdrank" },
       { name: "Chickenstrips 3 stuks", price: 450, from: true },
       { name: "Chickenstrips 6 stuks", price: 850, from: true },
-      { name: "Chickenstripsmenu", price: 1250, from: true, desc: "5 chicken strips met friet en frisdrank" },
-      { name: "Bucket 1", price: 1250, from: true, desc: "4 kipnuggets, 3 hotwings en 3 chicken strips met friet en frisdrank" },
-      { name: "Bucket 2", price: 2000, from: true, desc: "8 kipnuggets, 8 hotwings en 8 chicken strips met friet en 2 frisdrank" }
+      { name: "Chickenstripsmenu", price: 1250, from: true, desc: "5 chicken strips met friet en frisdrank" }
     ]
   },
   {
@@ -180,16 +192,13 @@ window.HAKIKI_MENU = [
       { name: "Kipnuggets 5 stuks", price: 300, from: true },
       { name: "Bitterballen 5 stuks", price: 300, from: true },
       { name: "Bamischijf pikant", price: 275, from: true },
-      { name: "Viandel", price: 300 },
-      { name: "Mini loempia", price: 300, desc: "5 stuks" },
-      { name: "Crizlystick", price: 350 },
       { name: "Hamburger", price: 500, from: true, desc: "Rond Turks broodje met sla, tomaat en komkommer" },
       { name: "Kipburger", price: 500, from: true, desc: "Rond Turks broodje met sla, tomaat en komkommer" },
       { name: "Falafel", price: 550, from: true },
       { name: "Snackmenu", price: 850, from: true, desc: "2 snacks met friet en salade" },
-      { name: "Pikantstaaf", soldout: true },
-      { name: "Kaaskroket", soldout: true },
-      { name: "Snack mix box 100 stuks", soldout: true, desc: "Mini snacks: frikandel, burger, bitterbal, nuggets, snackbites, ribburger, pikantsnack" }
+      { name: "Viandel", price: 300 },
+      { name: "Mini loempia", price: 300, desc: "5 stuks" },
+      { name: "Crizlystick", price: 350 }
     ]
   },
   {
@@ -199,12 +208,7 @@ window.HAKIKI_MENU = [
     blurb: "Verse friet, dagelijks gesneden. Sauzen los verkrijgbaar.",
     items: [
       { name: "Gezinszak 2/3 personen", price: 750, desc: "Verse frites" },
-      { name: "Gezinszak 4/5 personen", price: 950, desc: "Verse frites" },
-      { name: "Frites", soldout: true },
-      { name: "Frites mayonaise", soldout: true },
-      { name: "Frites curry", soldout: true },
-      { name: "Frites mayonaise en curry", soldout: true },
-      { name: "Frites speciaal", soldout: true }
+      { name: "Gezinszak 4/5 personen", price: 950, desc: "Verse frites" }
     ]
   },
   {
@@ -226,6 +230,8 @@ window.HAKIKI_MENU = [
     items: [
       { name: "Ayran 250 ml", price: 200 },
       { name: "Chaudfontaine water 500 ml", price: 285, desc: "Excl. statiegeld € 0,15" },
+      { name: "Coca-Cola 330 ml", price: 300 },
+      { name: "Coca-Cola Zero 330 ml", price: 300 },
       { name: "Fanta Orange 330 ml", price: 300 },
       { name: "Fanta Cassis 330 ml", price: 300 },
       { name: "Dr. Pepper 330 ml", price: 300 },
@@ -241,12 +247,7 @@ window.HAKIKI_MENU = [
       { name: "Fristi 250 ml", price: 350 },
       { name: "AA Drink 330 ml", price: 350 },
       { name: "Red Bull 250 ml", price: 350 },
-      { name: "Red Bull Suikervrij 250 ml", price: 350 },
-      { name: "Lipton Ice Tea Green Zero 330 ml", soldout: true },
-      { name: "Lipton Ice Tea Peach 330 ml", soldout: true },
-      { name: "Gazoz 330 ml", soldout: true },
-      { name: "Red Bull Apricot Edition 250 ml", soldout: true },
-      { name: "Red Bull Watermeloen 250 ml", soldout: true }
+      { name: "Red Bull Suikervrij 250 ml", price: 350 }
     ]
   },
   {
