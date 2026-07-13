@@ -1,13 +1,61 @@
+<!doctype html>
+<html lang="nl">
+<head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hakiki Döner · De echte döner in Eindhoven</title>
 <meta name="description" content="Hakiki Döner in Winkelcentrum Woensel, Eindhoven. De echte döner, dürüm, kapsalon en schotels, vers van het spit. Bestel online via Thuisbezorgd of bezoek onze zaak in Woensel." />
 <meta name="theme-color" content="#FAF6EF" />
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="restaurant" />
+<meta property="og:locale" content="nl_NL" />
+<meta property="og:site_name" content="Hakiki Döner" />
+<meta property="og:title" content="Hakiki Döner · De echte döner in Eindhoven" />
+<meta property="og:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
+<meta property="og:url" content="https://hakiki.nl/" />
+<meta property="og:image" content="https://hakiki.nl/assets/photos/hero.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Hakiki Döner · De echte döner in Eindhoven" />
+<meta name="twitter:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
+<meta name="twitter:image" content="https://hakiki.nl/assets/photos/hero.jpg" />
+
 <link rel="icon" href="assets/hakiki-logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
+
+<!-- Structured data: lokaal restaurant -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Hakiki Döner",
+  "image": "https://hakiki.nl/assets/photos/hero.jpg",
+  "url": "https://hakiki.nl/",
+  "telephone": "+31402483606",
+  "servesCuisine": ["Turks", "Döner", "Kebab"],
+  "priceRange": "€",
+  "menu": "https://www.thuisbezorgd.nl/en/menu/hakiki-doner",
+  "acceptsReservations": "False",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Winkelcentrum Woensel 414",
+    "postalCode": "5625 AG",
+    "addressLocality": "Eindhoven",
+    "addressCountry": "NL"
+  },
+  "sameAs": ["https://www.instagram.com/hakiki_doner"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"], "opens": "10:00", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:00", "closes": "21:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "20:00" }
+  ]
+}
+</script>
+</head>
+<body>
 
 <a class="skip-link" href="#menu">Direct naar het menu</a>
 
@@ -111,13 +159,13 @@
             Onze volledige menukaart. De vermelde prijzen zijn richtprijzen; bestel online voor de
             actuele prijzen en alle extra's.
           </p>
-          <button class="btn btn--pill menu__toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-collapse">
-            <span class="menu__toggle-label">Toon de menukaart</span>
+          <button class="btn btn--pill menu__toggle" id="menu-toggle" type="button" aria-expanded="true" aria-controls="menu-collapse">
+            <span class="menu__toggle-label">Verberg de menukaart</span>
             <span class="menu__toggle-icon" aria-hidden="true">▾</span>
           </button>
         </div>
 
-        <div id="menu-collapse" hidden>
+        <div id="menu-collapse">
           <div class="menu__filter" id="menu-filter" role="tablist" aria-label="Filter op categorie"></div>
           <div class="menu__grid" id="menu-grid"></div>
         </div>
@@ -270,3 +318,5 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
 <script src="analytics.js"></script>
+</body>
+</html>
