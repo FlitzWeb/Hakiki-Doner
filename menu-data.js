@@ -28,7 +28,7 @@ window.HAKIKI_MENU = [
       { name: "Broodje kipfilet XL", price: 1100 },
       { name: "Broodje yaprak", price: 1000 },
       { name: "Broodje yaprak XL", price: 1200 },
-      { name: "Broodje hamburger", price: 500, desc: "Rond Turks broodje met sla, tomaat en komkommer" }
+      { name: "Broodje hamburger", price: 500 }
     ]
   },
   {
