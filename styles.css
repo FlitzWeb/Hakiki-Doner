@@ -96,6 +96,8 @@ a { color: inherit; }
 .btn--sm { padding: 9px 18px; font-size: .74rem; }
 .btn--lg { padding: 16px 34px; font-size: .9rem; }
 .btn--block { display: flex; width: 100%; }
+.btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.55); border-radius: var(--pill); padding: 13px 26px; }
+.btn--ghost:hover { background: rgba(255,255,255,.12); border-color: #fff; }
 
 /* ---------- media placeholders ---------- */
 .media {
@@ -287,6 +289,7 @@ a { color: inherit; }
   background-image: radial-gradient(120% 120% at 90% -20%, rgba(255,255,255,.08), transparent 55%); }
 .band__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
 .band__copy p { color: rgba(255,255,255,.85); max-width: 44ch; margin: 0 0 26px; }
+.band__actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .band__media { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .media--band {
   min-height: 220px; border-color: rgba(255,255,255,.28); color: rgba(255,255,255,.75);
