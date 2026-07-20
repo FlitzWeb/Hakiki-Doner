@@ -99,9 +99,40 @@
   /* ---------------- Openingstijden + status ---------------- */
   var HOURS = window.HAKIKI_HOURS || {};
   var DAY_NL = ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"];
+  var MAAND_NL = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"];
+  var DAY_EN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var MAAND_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var ORDER = [1, 2, 3, 4, 5, 6, 0]; // ma → zo
 
+  /* ---------------- Vakantiesluiting ----------------
+     Verschijnt en verdwijnt automatisch. Bij een volgende vakantie
+     alleen deze twee datums aanpassen (en de datums in de
+     specialOpeningHoursSpecification in index.html). */
+  var VAKANTIE = {
+    start: new Date(2026, 6, 26),    // eerste dag gesloten (26 juli 2026)
+    weerOpen: new Date(2026, 7, 19)  // eerste dag weer open (19 augustus 2026)
+  };
+
+  // "vooraf" = aankondiging, "dicht" = nu met vakantie, "voorbij" = klaar
+  function vakantieFase(now) {
+    if (now >= VAKANTIE.weerOpen) return "voorbij";
+    if (now >= VAKANTIE.start) return "dicht";
+    return "vooraf";
+  }
+
+  function datumNl(d) { return DAY_NL[d.getDay()] + " " + d.getDate() + " " + MAAND_NL[d.getMonth()]; }
+  function datumEn(d) { return DAY_EN[d.getDay()] + ", " + MAAND_EN[d.getMonth()] + " " + d.getDate(); }
+
+  // Testhulpje: voeg ?testdatum=2026-08-01 toe aan de URL om de site
+  // te bekijken alsof het die dag is.
+  var testdatum = null;
+  try { testdatum = new URLSearchParams(window.location.search).get("testdatum"); } catch (e) {}
+  function NOW() { return testdatum ? new Date(testdatum + "T12:00:00") : new Date(); }
+
   function computeStatus(now) {
+    if (vakantieFase(now) === "dicht") {
+      return { open: false, text: "Gesloten wegens vakantie · weer open " + datumNl(VAKANTIE.weerOpen) };
+    }
     var day = now.getDay();
     var mins = now.getHours() * 60 + now.getMinutes();
     var today = HOURS[day];
@@ -112,18 +143,18 @@
         text: closingSoon ? "Sluit binnenkort · " + fmt(today.close) : "Nu geopend · tot " + fmt(today.close)
       };
     }
-    // volgende opening zoeken (max 7 dagen vooruit)
-    for (var i = 0; i < 8; i++) {
-      var d = (day + i) % 7;
-      var h = HOURS[d];
+    // volgende opening zoeken; vakantiedagen worden overgeslagen
+    for (var i = 0; i < 40; i++) {
+      var dag = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      if (vakantieFase(dag) === "dicht") continue;
+      var h = HOURS[dag.getDay()];
       if (!h) continue;
-      if (i === 0 && mins < h.open) {
-        return { open: false, text: "Gesloten · opent om " + fmt(h.open) };
+      if (i === 0) {
+        if (mins < h.open) return { open: false, text: "Gesloten · opent om " + fmt(h.open) };
+        continue;
       }
-      if (i > 0) {
-        var when = i === 1 ? "morgen" : DAY_NL[d];
-        return { open: false, text: "Gesloten · opent " + when + " om " + fmt(h.open) };
-      }
+      var when = i === 1 ? "morgen" : (i < 7 ? DAY_NL[dag.getDay()] : datumNl(dag));
+      return { open: false, text: "Gesloten · opent " + when + " om " + fmt(h.open) };
     }
     return { open: false, text: "Gesloten" };
   }
@@ -134,9 +165,99 @@
     return hh + ":" + (mm < 10 ? "0" + mm : mm);
   }
 
+  function paintVakantie(now) {
+    var fase = vakantieFase(now);
+    var laatsteDag = new Date(VAKANTIE.weerOpen.getFullYear(), VAKANTIE.weerOpen.getMonth(), VAKANTIE.weerOpen.getDate() - 1);
+
+    // meldingsbalk bovenaan
+    var notice = document.getElementById("vakantie-notice");
+    if (notice) {
+      notice.hidden = fase === "voorbij";
+      var nl = notice.querySelector('[data-role="vakantie-nl"]');
+      var en = notice.querySelector('[data-role="vakantie-en"]');
+      if (nl && en) {
+        if (fase === "vooraf") {
+          nl.textContent = "Vakantie: wij zijn gesloten van " + VAKANTIE.start.getDate() + " " + MAAND_NL[VAKANTIE.start.getMonth()] +
+                           " t/m " + laatsteDag.getDate() + " " + MAAND_NL[laatsteDag.getMonth()] + ".";
+          en.textContent = "Holiday: we will be closed from " + MAAND_EN[VAKANTIE.start.getMonth()] + " " + VAKANTIE.start.getDate() +
+                           " until and including " + MAAND_EN[laatsteDag.getMonth()] + " " + laatsteDag.getDate() + ".";
+        } else if (fase === "dicht") {
+          nl.textContent = "Wij zijn gesloten wegens vakantie. Vanaf " + datumNl(VAKANTIE.weerOpen) + " bent u weer van harte welkom.";
+          en.textContent = "We are closed for holiday. You are very welcome again from " + datumEn(VAKANTIE.weerOpen) + ".";
+        }
+      }
+    }
+
+    // pop-up: datums invullen en (één keer per bezoek) tonen
+    var modal = document.getElementById("vakantie-modal");
+    if (modal) {
+      var setText = function (role, text) {
+        var el = modal.querySelector('[data-role="' + role + '"]');
+        if (el) el.textContent = text;
+      };
+      setText("vmodal-nl-datums", "van " + VAKANTIE.start.getDate() + " " + MAAND_NL[VAKANTIE.start.getMonth()] +
+              " t/m " + laatsteDag.getDate() + " " + MAAND_NL[laatsteDag.getMonth()]);
+      setText("vmodal-nl-open", datumNl(VAKANTIE.weerOpen).charAt(0).toUpperCase() + datumNl(VAKANTIE.weerOpen).slice(1));
+      setText("vmodal-en-datums", "from " + MAAND_EN[VAKANTIE.start.getMonth()] + " " + VAKANTIE.start.getDate() +
+              " until and including " + MAAND_EN[laatsteDag.getMonth()] + " " + laatsteDag.getDate());
+      setText("vmodal-en-open", datumEn(VAKANTIE.weerOpen));
+
+      if (fase === "voorbij") {
+        sluitVakantieModal(false);
+      } else {
+        var gezien = false;
+        try { gezien = sessionStorage.getItem("hakiki-vakantie-gezien") === "1"; } catch (e) {}
+        if (!gezien && modal.hidden) {
+          modal.hidden = false;
+          document.body.classList.add("has-modal");
+          var x = modal.querySelector(".vmodal__x");
+          if (x) x.focus();
+        }
+      }
+    }
+
+    // bestelknoppen dimmen zolang de zaak dicht is
+    var dicht = fase === "dicht";
+    document.querySelectorAll('a[href*="thuisbezorgd"]').forEach(function (a) {
+      a.classList.toggle("is-disabled", dicht);
+      if (dicht) {
+        a.setAttribute("aria-disabled", "true");
+        a.setAttribute("tabindex", "-1");
+      } else {
+        a.removeAttribute("aria-disabled");
+        a.removeAttribute("tabindex");
+      }
+    });
+  }
+
+  function sluitVakantieModal(onthoud) {
+    var modal = document.getElementById("vakantie-modal");
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove("has-modal");
+    if (onthoud !== false) {
+      try { sessionStorage.setItem("hakiki-vakantie-gezien", "1"); } catch (e) {}
+    }
+  }
+
+  // pop-up sluiten: kruisje, knop, buiten de kaart klikken of Escape
+  document.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest('[data-role="vmodal-close"]')) sluitVakantieModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") sluitVakantieModal();
+  });
+
+  // vangnet: klik op een uitgeschakelde knop doet niets
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest("a.is-disabled") : null;
+    if (a) e.preventDefault();
+  });
+
   function paintStatus() {
-    var now = new Date();
+    var now = NOW();
     var st = computeStatus(now);
+    paintVakantie(now);
     document.querySelectorAll('[data-role="status"]').forEach(function (el) {
       el.classList.toggle("is-open", st.open);
       el.classList.toggle("is-closed", !st.open);
@@ -144,14 +265,14 @@
       if (txt) txt.textContent = st.text;
     });
     // "vandaag" in de hero
-    var today = HOURS[now.getDay()];
+    var today = vakantieFase(now) === "dicht" ? null : HOURS[now.getDay()];
     document.querySelectorAll('[data-role="today-hours"]').forEach(function (el) {
       el.textContent = today ? today.label : "Gesloten";
     });
   }
 
   function buildHours() {
-    var todayDay = new Date().getDay();
+    var todayDay = NOW().getDay();
     document.querySelectorAll('[data-role="hours"] tbody').forEach(function (tbody) {
       tbody.innerHTML = ORDER.map(function (d) {
         var h = HOURS[d];
