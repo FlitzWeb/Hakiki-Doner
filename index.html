@@ -54,6 +54,9 @@
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"], "opens": "10:00", "closes": "20:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:00", "closes": "21:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "20:00" }
+  ],
+  "specialOpeningHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "validFrom": "2026-07-26", "validThrough": "2026-08-18" }
   ]
 }
 </script>
@@ -61,6 +64,39 @@
 <body>
 
 <a class="skip-link" href="#menu">Direct naar het menu</a>
+
+<!-- Herbruikbaar telefoon-icoon voor de belknoppen -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><symbol id="ico-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol></svg>
+
+<!-- Vakantiemelding: verschijnt en verdwijnt automatisch op basis van de datums in main.js -->
+<div class="notice" id="vakantie-notice" hidden>
+  <p class="notice__nl" data-role="vakantie-nl"></p>
+  <p class="notice__en" data-role="vakantie-en"></p>
+</div>
+
+<!-- Vakantie-pop-up (zelfde datums, gevuld via main.js); één keer per bezoek -->
+<div class="vmodal" id="vakantie-modal" role="dialog" aria-modal="true" aria-labelledby="vmodal-title" hidden>
+  <div class="vmodal__scrim" data-role="vmodal-close"></div>
+  <div class="vmodal__card">
+    <button class="vmodal__x" type="button" aria-label="Melding sluiten" data-role="vmodal-close">&times;</button>
+
+    <h2 class="vmodal__title" id="vmodal-title">Beste klanten,</h2>
+    <p class="vmodal__body">i.v.m. vakantie zijn wij gesloten</p>
+    <p class="vmodal__dates" data-role="vmodal-nl-datums"></p>
+    <p class="vmodal__body"><span data-role="vmodal-nl-open"></span> bent u weer van harte welkom.</p>
+    <p class="vmodal__team">Team Hakiki</p>
+
+    <hr class="vmodal__sep" />
+
+    <h2 class="vmodal__title">Dear customers,</h2>
+    <p class="vmodal__body">due to our holiday we will be closed</p>
+    <p class="vmodal__dates" data-role="vmodal-en-datums"></p>
+    <p class="vmodal__body">On <span data-role="vmodal-en-open"></span> you are very welcome again.</p>
+    <p class="vmodal__team">Team Hakiki</p>
+
+    <button class="btn btn--pill vmodal__ok" type="button" data-role="vmodal-close">Sluiten / Close</button>
+  </div>
+</div>
 
 <div class="shell">
   <!-- ===== NAV ===== -->
@@ -79,7 +115,10 @@
       <nav class="nav__links nav__links--right" aria-label="Hoofdmenu rechts">
         <a href="#reviews">Reviews</a>
         <a href="#vind-ons">Vind ons</a>
-        <a class="btn btn--pill btn--sm" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestellen</a>
+        <span class="nav__cta">
+          <a class="btn btn--pill btn--sm" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel</a>
+          <a class="btn btn--outline btn--sm" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestellen</a>
+        </span>
       </nav>
 
       <button class="nav__toggle" id="nav-toggle" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-menu">
@@ -93,7 +132,8 @@
       <a href="#sfeer">Sfeer</a>
       <a href="#reviews">Reviews</a>
       <a href="#vind-ons">Vind ons</a>
-      <a class="btn btn--pill btn--block" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestel op Thuisbezorgd</a>
+      <a class="btn btn--pill btn--block" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel: 040 248 3606</a>
+      <a class="btn btn--outline btn--block" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestel op Thuisbezorgd</a>
     </nav>
   </header>
 
@@ -103,10 +143,16 @@
       <div class="container hero__inner">
         <h1 class="hero__title"><em>De echte</em> döner<br />van Woensel</h1>
 
-        <a class="circle-cta" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">
-          <span>Bestel<br />online</span>
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
+        <div class="hero__ctas">
+          <a class="circle-cta" href="tel:+31402483606">
+            <span>Bel<br />ons</span>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><use href="#ico-phone"/></svg>
+          </a>
+          <a class="circle-cta" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">
+            <span>Bestel<br />online</span>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
 
         <figure class="media media--hero">
           <img src="assets/photos/hero.jpg" alt="Hakiki Döner, de zaak in Winkelcentrum Woensel" width="980" height="612" />
@@ -126,7 +172,7 @@
     <section class="story" id="verhaal">
       <div class="container story__grid">
         <figure class="media media--story">
-          <img src="assets/photos/team.jpg" alt="Het team van Hakiki Döner achter de toonbank" width="1200" height="1600" />
+          <img src="assets/photos/interieur.jpg" alt="Binnen bij Hakiki Döner in Winkelcentrum Woensel, met de toonbank en menuborden" width="1200" height="1600" />
         </figure>
         <div class="story__copy">
           <h2 class="h2">Hakiki betekent <span class="serif-it">de echte</span>.</h2>
@@ -142,7 +188,7 @@
           <div class="story__stats">
             <div><strong>Van het spit</strong><span>Vers gesneden</span></div>
             <div><strong>Verse friet</strong><span>Dagelijks bereid</span></div>
-            <div><strong>Turks brood</strong><span>Vers uit de oven</span></div>
+            <div><strong>Heerlijke koffie</strong><span>Premium bonen</span></div>
           </div>
           <a class="btn btn--pill" href="#menu">Bekijk de menukaart</a>
         </div>
@@ -153,10 +199,11 @@
     <section class="band">
       <div class="container band__grid">
         <div class="band__copy">
-          <h2 class="h2 h2--light">Verse friet, dagelijks vers gesneden</h2>
-          <p>Wij snijden onze friet elke dag vers uit hele aardappelen en frituren ze goudbruin op bestelling. Knapperig van buiten, zacht van binnen, precies goed bij een schotel, kapsalon of gewoon als gezinszak.</p>
+          <h2 class="h2 h2--light">Verse friet</h2>
+          <p>Elke dag vers vriet, knapperig van buiten, zacht van binnen, precies goed bij een schotel, kapsalon of gewoon als gezinszak.</p>
           <div class="band__actions">
             <a class="btn btn--white" href="#cat-frites">Bekijk onze friet →</a>
+            <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel</a>
             <a class="btn btn--ghost" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestel op Thuisbezorgd →</a>
           </div>
         </div>
@@ -188,7 +235,8 @@
         </div>
 
         <div class="menu__cta">
-          <a class="btn btn--pill btn--lg" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestel op Thuisbezorgd →</a>
+          <a class="btn btn--pill btn--lg" href="tel:+31402483606"><svg class="btn__ico" width="18" height="18" aria-hidden="true"><use href="#ico-phone"/></svg>Bel: 040 248 3606</a>
+          <a class="btn btn--outline btn--lg" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestel op Thuisbezorgd →</a>
         </div>
       </div>
     </section>
@@ -198,7 +246,6 @@
       <div class="container">
         <div class="section-head section-head--center">
           <h2 class="h2 h2--light">Proef de sfeer</h2>
-          <p class="section-lead section-lead--light">Binnenkort tonen wij hier professionele foto's van onze gerechten en onze zaak.</p>
         </div>
       </div>
       <div class="gallery__row">
@@ -208,6 +255,7 @@
         <figure class="polaroid"><img class="polaroid__img" src="assets/photos/durum.jpg" alt="Dürüm" loading="lazy" /><figcaption>Dürüm</figcaption></figure>
         <figure class="polaroid"><img class="polaroid__img" src="assets/photos/schotel.jpg" alt="Schotel" loading="lazy" /><figcaption>Schotel</figcaption></figure>
         <figure class="polaroid"><img class="polaroid__img" src="assets/photos/lahmacun.jpg" alt="Lahmacun" loading="lazy" /><figcaption>Lahmacun</figcaption></figure>
+        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/koffie.jpg" alt="Espresso in Lavazza-kopjes met verse koffiebonen" loading="lazy" /><figcaption>Lavazza koffie</figcaption></figure>
       </div>
     </section>
 
@@ -278,7 +326,10 @@
         <div class="footer__brand">
           <img src="assets/hakiki-logo.png" alt="Hakiki Döner" width="150" height="103" />
           <p>De echte döner uit Winkelcentrum Woensel, Eindhoven.</p>
-          <a class="btn btn--white" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestel op Thuisbezorgd →</a>
+          <div class="footer__cta">
+            <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel: 040 248 3606</a>
+            <a class="btn btn--ghost" href="https://www.thuisbezorgd.nl/en/menu/hakiki-doner" target="_blank" rel="noopener">Bestel op Thuisbezorgd →</a>
+          </div>
         </div>
         <div class="footer__cols">
           <div class="footer__col">
