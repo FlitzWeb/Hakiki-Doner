@@ -229,7 +229,7 @@ window.HAKIKI_MENU = [
     blurb: "Frisdrank, sappen en de onmisbare ayran.",
     items: [
       { name: "Ayran 250 ml", price: 200 },
-      { name: "Chaudfontaine water 500 ml", price: 285, desc: "Excl. statiegeld € 0,15" },
+      { name: "Chaudfontaine water 500 ml", price: 285 },
       { name: "Coca-Cola 330 ml", price: 300 },
       { name: "Coca-Cola Zero 330 ml", price: 300 },
       { name: "Fanta Orange 330 ml", price: 300 },
