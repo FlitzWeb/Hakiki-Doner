@@ -6,6 +6,14 @@
 <title>Hakiki Döner · De echte döner in Eindhoven</title>
 <meta name="description" content="Hakiki Döner in Winkelcentrum Woensel, Eindhoven. De echte döner, dürüm, kapsalon en schotels, vers van het spit. Bestel online via Thuisbezorgd of bezoek onze zaak in Woensel." />
 <meta name="theme-color" content="#FAF6EF" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<link rel="canonical" href="https://hakiki.nl/" />
+
+<!-- Lokale SEO: geo -->
+<meta name="geo.region" content="NL-NB" />
+<meta name="geo.placename" content="Eindhoven" />
+<meta name="geo.position" content="51.469383;5.475595" />
+<meta name="ICBM" content="51.469383, 5.475595" />
 
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="restaurant" />
@@ -15,6 +23,9 @@
 <meta property="og:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
 <meta property="og:url" content="https://hakiki.nl/" />
 <meta property="og:image" content="https://hakiki.nl/assets/photos/hero.jpg" />
+<meta property="og:image:alt" content="Hakiki Döner in Winkelcentrum Woensel, Eindhoven" />
+<meta property="og:image:width" content="980" />
+<meta property="og:image:height" content="612" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Hakiki Döner · De echte döner in Eindhoven" />
 <meta name="twitter:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
@@ -34,20 +45,44 @@
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
+  "@id": "https://hakiki.nl/#restaurant",
   "name": "Hakiki Döner",
+  "alternateName": "Hakiki Döner Eindhoven",
+  "description": "Hakiki Döner in Winkelcentrum Woensel, Eindhoven. De echte döner, dürüm, kapsalon, schotels en verse friet, vers van het spit. Bestel online via Thuisbezorgd of bezoek onze zaak in Woensel.",
   "image": "https://hakiki.nl/assets/photos/hero.jpg",
+  "logo": "https://hakiki.nl/assets/hakiki-logo.png",
   "url": "https://hakiki.nl/",
   "telephone": "+31402483606",
-  "servesCuisine": ["Turks", "Döner", "Kebab"],
+  "servesCuisine": ["Turks", "Döner", "Kebab", "Döner Kebab", "Shoarma", "Kapsalon", "Mediterraans"],
   "priceRange": "€",
   "menu": "https://www.thuisbezorgd.nl/en/menu/hakiki-doner",
+  "hasMenu": "https://www.thuisbezorgd.nl/en/menu/hakiki-doner",
   "acceptsReservations": "False",
+  "currenciesAccepted": "EUR",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Winkelcentrum Woensel 414",
     "postalCode": "5625 AG",
     "addressLocality": "Eindhoven",
+    "addressRegion": "Noord-Brabant",
     "addressCountry": "NL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 51.469383,
+    "longitude": 5.475595
+  },
+  "hasMap": "https://www.google.com/maps?q=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven",
+  "areaServed": [
+    { "@type": "City", "name": "Eindhoven" },
+    { "@type": "Place", "name": "Woensel" }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "reviewCount": "4500",
+    "bestRating": "5",
+    "worstRating": "1"
   },
   "sameAs": ["https://www.instagram.com/hakiki_doner"],
   "openingHoursSpecification": [
@@ -56,7 +91,7 @@
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "20:00" }
   ],
   "specialOpeningHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "validFrom": "2026-07-26", "validThrough": "2026-08-18" }
+    { "@type": "OpeningHoursSpecification", "opens": "00:00", "closes": "00:00", "validFrom": "2026-07-26", "validThrough": "2026-08-18" }
   ]
 }
 </script>
@@ -365,6 +400,5 @@
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
-<script src="analytics.js"></script>
 </body>
 </html>
