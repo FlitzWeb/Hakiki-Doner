@@ -24,11 +24,14 @@
   var filter = document.getElementById("menu-filter");
   var data = window.HAKIKI_MENU || [];
 
+  // Let op: de losse spans worden met een spatie aan elkaar geplakt. Zonder die
+  // spatie plakt de tekst in zoekresultaten aan elkaar ("€ 12,0010 stuks"),
+  // omdat Google de tekst uitleest zonder naar de opmaak te kijken.
   function priceHtml(item) {
     if (item.soldout) {
       return '<span class="mitem__soldout">Tijdelijk uitverkocht</span>';
     }
-    var from = item.from ? '<span class="from">vanaf</span>' : "";
+    var from = item.from ? '<span class="from">vanaf</span> ' : "";
     return '<span class="mitem__price">' + from + euro(item.price) + "</span>";
   }
 
@@ -37,8 +40,8 @@
     var desc = item.desc ? '<span class="mitem__desc">' + esc(item.desc) + "</span>" : "";
     return (
       '<li class="' + cls + '">' +
-        '<span class="mitem__name">' + esc(item.name) + "</span>" +
-        priceHtml(item) +
+        '<span class="mitem__name">' + esc(item.name) + "</span> " +
+        priceHtml(item) + " " +
         desc +
       "</li>"
     );
@@ -48,17 +51,17 @@
     return (
       '<article class="mcard" id="cat-' + cat.id + '" data-cat="' + cat.id + '">' +
         '<header class="mcard__head">' +
-          '<h3 class="mcard__title">' + esc(cat.title) + "</h3>" +
+          '<h3 class="mcard__title">' + esc(cat.title) + "</h3> " +
           (cat.tag ? '<span class="mcard__tag">' + esc(cat.tag) + "</span>" : "") +
         "</header>" +
         (cat.blurb ? '<p class="mcard__blurb">' + esc(cat.blurb) + "</p>" : "") +
-        '<ul class="mlist">' + cat.items.map(itemHtml).join("") + "</ul>" +
+        '<ul class="mlist">' + cat.items.map(itemHtml).join("\n") + "</ul>" +
       "</article>"
     );
   }
 
   if (grid) {
-    grid.innerHTML = data.map(cardHtml).join("");
+    grid.innerHTML = data.map(cardHtml).join("\n");
   }
 
   /* ---------------- Filter chips ---------------- */
@@ -277,9 +280,9 @@
       tbody.innerHTML = ORDER.map(function (d) {
         var h = HOURS[d];
         var cls = d === todayDay ? ' class="is-today"' : "";
-        return "<tr" + cls + "><td>" + DAY_NL[d] + "</td><td>" +
+        return "<tr" + cls + "><td>" + DAY_NL[d] + "</td> <td>" +
                (h ? h.label : "Gesloten") + "</td></tr>";
-      }).join("");
+      }).join("\n");
     });
   }
 

@@ -1,14 +1,8 @@
 <!doctype html>
 <html lang="nl">
 <head>
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xqkfrlfnu7");
-</script>
-
+<!-- Microsoft Clarity wordt NIET hier geladen: cookies.js laadt de tag pas
+     nadat de bezoeker toestemming heeft gegeven (AVG/GDPR). -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hakiki Döner · De echte döner in Eindhoven</title>
@@ -30,14 +24,14 @@
 <meta property="og:title" content="Hakiki Döner · De echte döner in Eindhoven" />
 <meta property="og:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
 <meta property="og:url" content="https://hakiki.nl/" />
-<meta property="og:image" content="https://hakiki.nl/assets/photos/hero.jpg" />
-<meta property="og:image:alt" content="Hakiki Döner in Winkelcentrum Woensel, Eindhoven" />
-<meta property="og:image:width" content="980" />
-<meta property="og:image:height" content="612" />
+<meta property="og:image" content="https://hakiki.nl/assets/og-hakiki.jpg" />
+<meta property="og:image:alt" content="Logo van Hakiki Döner · de echte döner van Woensel, Eindhoven" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Hakiki Döner · De echte döner in Eindhoven" />
 <meta name="twitter:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
-<meta name="twitter:image" content="https://hakiki.nl/assets/photos/hero.jpg" />
+<meta name="twitter:image" content="https://hakiki.nl/assets/og-hakiki.jpg" />
 
 <link rel="icon" href="assets/hakiki-logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -57,7 +51,10 @@
   "name": "Hakiki Döner",
   "alternateName": "Hakiki Döner Eindhoven",
   "description": "Hakiki Döner in Winkelcentrum Woensel, Eindhoven. De echte döner, dürüm, kapsalon, schotels en verse friet, vers van het spit. Bestel online via Thuisbezorgd of bezoek onze zaak in Woensel.",
-  "image": "https://hakiki.nl/assets/photos/hero.jpg",
+  "image": [
+    "https://hakiki.nl/assets/og-hakiki.jpg",
+    "https://hakiki.nl/assets/photos/hero.jpg"
+  ],
   "logo": "https://hakiki.nl/assets/hakiki-logo.png",
   "url": "https://hakiki.nl/",
   "telephone": "+31402483606",
@@ -138,6 +135,46 @@
     <p class="vmodal__team">Team Hakiki</p>
 
     <button class="btn btn--pill vmodal__ok" type="button" data-role="vmodal-close">Sluiten / Close</button>
+  </div>
+</div>
+
+<!-- Cookiebanner: verschijnt zolang er nog geen keuze is gemaakt (zie cookies.js) -->
+<div class="cookie" id="cookie-banner" role="region" aria-label="Cookietoestemming" hidden>
+  <div class="cookie__card">
+    <div class="cookie__text">
+      <h2 class="cookie__title">Even over cookies</h2>
+      <p class="cookie__body">
+        Wij gebruiken statistiekcookies van Microsoft Clarity om te zien hoe onze site
+        gebruikt wordt, zodat we hem beter kunnen maken. Dat doen we alleen met uw toestemming.
+      </p>
+      <p class="cookie__en">We use Microsoft Clarity analytics cookies, only if you agree.</p>
+
+      <details class="cookie__details">
+        <summary>Wat slaan we precies op?</summary>
+        <div class="cookie__details-body">
+          <p>
+            <strong>Noodzakelijk (altijd actief).</strong> Uw cookiekeuze en het al gelezen zijn
+            van de vakantiemelding. Deze blijven in uw eigen browser en gaan niet naar derden.
+          </p>
+          <p>
+            <strong>Statistiek (alleen na akkoord).</strong> Microsoft Clarity plaatst de cookies
+            <code>_clck</code> en <code>_clsk</code> en registreert anoniem welke pagina's en knoppen
+            u gebruikt en hoe u scrolt. Bewaartermijn: maximaal 1 jaar. Meer weten?
+            <a href="https://privacy.microsoft.com/nl-nl/privacystatement" target="_blank" rel="noopener">Privacyverklaring van Microsoft</a>.
+          </p>
+          <p>
+            Bezoekaantallen meten we daarnaast met Vercel Analytics; dat werkt zonder cookies
+            en zonder persoonsgegevens. Alles op een rij in onze
+            <a href="privacy.html">privacy- &amp; cookieverklaring</a>.
+          </p>
+        </div>
+      </details>
+    </div>
+
+    <div class="cookie__actions">
+      <button class="btn btn--pill cookie__btn" type="button" data-role="cookie-accept">Accepteren</button>
+      <button class="btn btn--outline cookie__btn" type="button" data-role="cookie-reject">Alleen noodzakelijk</button>
+    </div>
   </div>
 </div>
 
@@ -395,6 +432,10 @@
       </div>
       <div class="footer__bar">
         <span>© <span data-role="year"></span> Hakiki Döner</span>
+        <span class="footer__legal">
+          <a href="privacy.html">Privacy &amp; cookies</a>
+          <button class="footer__link" type="button" data-role="cookie-settings">Cookievoorkeuren</button>
+        </span>
         <a href="#top">Terug naar boven ↑</a>
       </div>
     </div>
@@ -403,6 +444,8 @@
 
 <script src="menu-data.js"></script>
 <script src="main.js"></script>
+<!-- na main.js: de cookiebanner wacht op de vakantie-pop-up -->
+<script src="cookies.js"></script>
 
 <!-- Vercel Web Analytics + Speed Insights -->
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>

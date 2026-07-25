@@ -118,6 +118,62 @@ a.is-disabled { opacity: .45; pointer-events: none; cursor: not-allowed; filter:
 .vmodal__ok { margin-top: 26px; }
 body.has-modal { overflow: hidden; }
 
+/* ---------- cookiebanner ---------- */
+.cookie {
+  position: fixed; z-index: 90;
+  left: var(--pad); bottom: clamp(16px, 3vw, 28px); right: var(--pad);
+  display: flex; justify-content: flex-start;
+  pointer-events: none;
+}
+.cookie[hidden] { display: none; }
+.cookie__card {
+  pointer-events: auto;
+  width: 100%; max-width: 460px;
+  max-height: calc(100vh - 56px); overflow-y: auto;
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--black); border-radius: var(--r-md);
+  padding: clamp(22px, 3.4vw, 30px);
+  box-shadow: 0 26px 60px -28px rgba(0, 0, 0, .65);
+  animation: cookie-in .35s ease both;
+}
+@keyframes cookie-in { from { opacity: 0; transform: translateY(18px); } }
+.cookie__title {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.4rem;
+  line-height: 1.15; margin: 0 0 10px;
+}
+.cookie__title::before {
+  content: ""; display: block; width: 40px; height: 3px;
+  background: var(--red); margin-bottom: 14px;
+}
+.cookie__body { margin: 0; font-size: .93rem; color: var(--ink); }
+.cookie__en { margin: 6px 0 0; font-size: .78rem; color: var(--muted); }
+
+.cookie__details { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+.cookie__details summary {
+  cursor: pointer; list-style: none; font-weight: 700; font-size: .78rem;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--red);
+}
+.cookie__details summary::-webkit-details-marker { display: none; }
+.cookie__details summary::after { content: " +"; }
+.cookie__details[open] summary::after { content: " –"; }
+.cookie__details-body { font-size: .82rem; color: var(--muted); margin-top: 10px; }
+.cookie__details-body p { margin: 0 0 8px; }
+.cookie__details-body p:last-child { margin-bottom: 0; }
+.cookie__details-body strong { color: var(--ink); }
+.cookie__details-body code {
+  font-size: .95em; background: var(--paper-2); border-radius: 4px; padding: 1px 5px;
+}
+.cookie__details-body a { color: var(--red); }
+
+.cookie__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.cookie__btn { flex: 1 1 160px; padding-inline: 18px; }
+
+@media (max-width: 560px) {
+  .cookie { left: 10px; right: 10px; bottom: 10px; }
+  .cookie__card { max-width: none; }
+  .cookie__btn { flex-basis: 100%; }
+}
+
 /* ---------- buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -319,7 +375,7 @@ body.has-modal { overflow: hidden; }
 .mitem__name { font-weight: 600; color: var(--ink); }
 .mitem__desc { grid-column: 1 / -1; margin-top: 2px; color: var(--muted); font-size: .82rem; line-height: 1.45; max-width: 52ch; }
 .mitem__price { font-weight: 700; color: var(--red-deep); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.mitem__price .from { color: var(--muted); font-weight: 500; font-size: .72rem; margin-right: 3px; }
+.mitem__price .from { color: var(--muted); font-weight: 500; font-size: .72rem; }
 .mitem--soldout .mitem__name { color: var(--muted); }
 .mitem__soldout {
   font-family: var(--font-body); font-size: .68rem; letter-spacing: .04em; text-transform: uppercase;
@@ -448,6 +504,64 @@ body.has-modal { overflow: hidden; }
 }
 .footer__bar a { color: var(--muted-lt); text-decoration: none; }
 .footer__bar a:hover { color: #fff; }
+.footer__legal { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-right: auto; }
+.footer__legal a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-dark); }
+.footer__link {
+  font: inherit; color: var(--muted-lt); background: none; border: 0; padding: 0;
+  cursor: pointer; text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: var(--line-dark);
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+.footer__link:hover { color: #fff; text-decoration-color: currentColor; }
+
+/* ---------- privacy / juridische pagina ---------- */
+.legal { padding: clamp(48px, 8vw, 96px) 0 clamp(64px, 9vw, 110px); }
+.legal__inner { max-width: 760px; }
+.legal__head { margin-bottom: 48px; }
+.legal__eyebrow {
+  font-size: .74rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--red); margin: 0 0 14px;
+}
+.legal__date { margin: 18px 0 0; font-size: .82rem; color: var(--muted); }
+
+.legal__block { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line); }
+.legal__block h2 {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.45rem;
+  line-height: 1.2; margin: 0 0 12px;
+}
+.legal__block p { margin: 0 0 12px; color: var(--ink); }
+.legal__block p:last-child { margin-bottom: 0; }
+.legal__block a { color: var(--red); text-underline-offset: 3px; }
+.legal__cta { margin-top: 20px; }
+
+.legal__table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: .9rem; }
+.legal__table th, .legal__table td {
+  text-align: left; vertical-align: top; padding: 12px 14px 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.legal__table th {
+  font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  font-weight: 700; border-bottom-color: var(--ink);
+}
+.legal__table th:first-child, .legal__table td:first-child { width: 28%; }
+.legal__table td:first-child code { white-space: nowrap; }
+.legal__table td:last-child { padding-right: 0; white-space: nowrap; color: var(--muted); }
+.legal__table code {
+  font-size: .88em; background: var(--paper-2); border-radius: 4px; padding: 2px 6px;
+}
+
+.legal__back { margin-top: 48px; font-weight: 700; }
+.legal__back a { color: var(--red); text-decoration: none; }
+.legal__back a:hover { text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .legal__table, .legal__table tbody, .legal__table tr, .legal__table td,
+  .legal__table td:first-child { display: block; width: 100%; }
+  .legal__table thead { display: none; }
+  .legal__table tr { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .legal__table td { border: 0; padding: 2px 0; white-space: normal; }
+  .legal__table td:last-child { white-space: normal; font-size: .82rem; }
+}
 
 /* =========================================================
    RESPONSIVE
