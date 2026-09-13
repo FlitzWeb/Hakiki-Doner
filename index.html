@@ -115,7 +115,7 @@
 </div>
 
 <!-- Vakantie-pop-up (zelfde datums, gevuld via main.js); één keer per bezoek -->
-<div class="vmodal" id="vakantie-modal" role="dialog" aria-modal="true" aria-labelledby="vmodal-title" hidden>
+<div class="vmodal" id="vakantie-modal" role="dialog" aria-modal="true" aria-labelledby="vmodal-title" data-gezien="hakiki-vakantie-gezien" hidden>
   <div class="vmodal__scrim" data-role="vmodal-close"></div>
   <div class="vmodal__card">
     <button class="vmodal__x" type="button" aria-label="Melding sluiten" data-role="vmodal-close">&times;</button>
@@ -138,6 +138,43 @@
   </div>
 </div>
 
+<!-- Afhaalmelding: geen bezorging meer. Datums in main.js (AFHAAL) -->
+<div class="notice notice--afhaal" id="afhaal-notice" hidden>
+  <p class="notice__nl" data-role="afhaal-nl"></p>
+  <p class="notice__en" data-role="afhaal-en"></p>
+</div>
+
+<!-- Afhaal-pop-up (zelfde principe als de vakantie-pop-up); één keer per bezoek -->
+<div class="vmodal vmodal--afhaal" id="afhaal-modal" role="dialog" aria-modal="true" aria-labelledby="amodal-title" data-gezien="hakiki-afhaal-gezien" hidden>
+  <div class="vmodal__scrim" data-role="vmodal-close"></div>
+  <div class="vmodal__card">
+    <button class="vmodal__x" type="button" aria-label="Melding sluiten" data-role="vmodal-close">&times;</button>
+
+    <img class="vmodal__logo" src="assets/hakiki-logo.png" alt="" width="132" height="91" />
+
+    <h2 class="vmodal__title" id="amodal-title">Beste klanten,</h2>
+    <p class="vmodal__lead" data-role="amodal-nl-stop"></p>
+    <p class="vmodal__body">Voor afhalen bent u van harte welkom in onze zaak in</p>
+    <p class="vmodal__dates">Winkelcentrum Woensel 414</p>
+
+    <div class="vmodal__actions">
+      <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel: 040 248 3606</a>
+      <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven" target="_blank" rel="noopener">Route plannen →</a>
+    </div>
+
+    <p class="vmodal__team">Met vriendelijke groet, Team Hakiki</p>
+
+    <hr class="vmodal__sep" />
+
+    <p class="vmodal__en" lang="en">
+      <strong>Dear customers,</strong> <span data-role="amodal-en-stop"></span>
+      For takeaway you are very welcome at our shop in Winkelcentrum Woensel.
+    </p>
+
+    <button class="vmodal__link" type="button" data-role="vmodal-close">Sluiten / Close</button>
+  </div>
+</div>
+
 <!-- Cookiebanner: verschijnt zolang er nog geen keuze is gemaakt (zie cookies.js) -->
 <div class="cookie" id="cookie-banner" role="region" aria-label="Cookietoestemming" hidden>
   <div class="cookie__card">
@@ -154,7 +191,7 @@
         <div class="cookie__details-body">
           <p>
             <strong>Noodzakelijk (altijd actief).</strong> Uw cookiekeuze en het al gelezen zijn
-            van de vakantiemelding. Deze blijven in uw eigen browser en gaan niet naar derden.
+            van onze meldingen (vakantie, afhalen). Deze blijven in uw eigen browser en gaan niet naar derden.
           </p>
           <p>
             <strong>Statistiek (alleen na akkoord).</strong> Microsoft Clarity plaatst de cookies
@@ -444,7 +481,7 @@
 
 <script src="menu-data.js"></script>
 <script src="main.js"></script>
-<!-- na main.js: de cookiebanner wacht op de vakantie-pop-up -->
+<!-- na main.js: de cookiebanner wacht tot de pop-ups gesloten zijn -->
 <script src="cookies.js"></script>
 
 <!-- Vercel Web Analytics + Speed Insights -->

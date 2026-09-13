@@ -205,18 +205,7 @@
               " until and including " + MAAND_EN[laatsteDag.getMonth()] + " " + laatsteDag.getDate());
       setText("vmodal-en-open", datumEn(VAKANTIE.weerOpen));
 
-      if (fase === "voorbij") {
-        sluitVakantieModal(false);
-      } else {
-        var gezien = false;
-        try { gezien = sessionStorage.getItem("hakiki-vakantie-gezien") === "1"; } catch (e) {}
-        if (!gezien && modal.hidden) {
-          modal.hidden = false;
-          document.body.classList.add("has-modal");
-          var x = modal.querySelector(".vmodal__x");
-          if (x) x.focus();
-        }
-      }
+      modalWacht(modal, fase !== "voorbij");
     }
 
     // bestelknoppen dimmen zolang de zaak dicht is
@@ -233,22 +222,94 @@
     });
   }
 
-  function sluitVakantieModal(onthoud) {
-    var modal = document.getElementById("vakantie-modal");
+  /* ---------------- Geen bezorging meer, alleen afhalen ----------------
+     Balk en pop-up verschijnen en verdwijnen automatisch. Vóór "vanaf"
+     is het een aankondiging, daarna een melding; vanaf "meldenTot" is
+     alles weer weg. */
+  var AFHAAL = {
+    vanaf: new Date(2026, 9, 1),      // eerste dag zonder bezorging (1 oktober 2026)
+    meldenTot: new Date(2026, 10, 1)  // vanaf deze dag geen balk/pop-up meer (1 november 2026)
+  };
+
+  // "vooraf" = aankondiging, "actief" = bezorging gestopt, "voorbij" = niet meer melden
+  function afhaalFase(now) {
+    if (now >= AFHAAL.meldenTot) return "voorbij";
+    if (now >= AFHAAL.vanaf) return "actief";
+    return "vooraf";
+  }
+
+  function paintAfhaal(now) {
+    var fase = afhaalFase(now);
+    var dagNl = AFHAAL.vanaf.getDate() + " " + MAAND_NL[AFHAAL.vanaf.getMonth()];
+    var dagEn = MAAND_EN[AFHAAL.vanaf.getMonth()] + " " + AFHAAL.vanaf.getDate();
+    var setText = function (root, role, text) {
+      var el = root.querySelector('[data-role="' + role + '"]');
+      if (el) el.textContent = text;
+    };
+
+    var notice = document.getElementById("afhaal-notice");
+    if (notice) {
+      notice.hidden = fase === "voorbij";
+      setText(notice, "afhaal-nl", (fase === "vooraf" ? "Per " + dagNl + " bezorgen wij niet meer aan huis." : "Wij bezorgen niet meer aan huis.") +
+              " Afhalen kan in Winkelcentrum Woensel.");
+      setText(notice, "afhaal-en", (fase === "vooraf" ? "From " + dagEn + " we no longer deliver." : "We no longer deliver.") +
+              " Takeaway at Winkelcentrum Woensel.");
+    }
+
+    var modal = document.getElementById("afhaal-modal");
+    if (modal) {
+      setText(modal, "amodal-nl-stop", fase === "vooraf"
+        ? "Per " + dagNl + " stoppen wij met onze bezorgservice aan huis."
+        : "Sinds " + dagNl + " bezorgen wij niet meer aan huis.");
+      setText(modal, "amodal-en-stop", fase === "vooraf"
+        ? "From " + dagEn + " we will no longer deliver to your home."
+        : "Since " + dagEn + " we no longer deliver to your home.");
+      modalWacht(modal, fase !== "voorbij");
+    }
+  }
+
+  /* ---------------- Pop-ups (vakantie, afhalen) ----------------
+     Een pop-up die getoond mag worden gaat in de wachtrij; er staat er
+     altijd maar één tegelijk in beeld. Na sluiten komt de volgende. Wat
+     gesloten is blijft deze sessie weg (sessionStorage, key in data-gezien). */
+  function modalWacht(modal, tonen) {
+    if (!tonen) {
+      delete modal.dataset.wacht;
+      sluitModal(modal, false);
+      return;
+    }
+    var gezien = false;
+    try { gezien = sessionStorage.getItem(modal.getAttribute("data-gezien")) === "1"; } catch (e) {}
+    if (!gezien && modal.hidden) modal.dataset.wacht = "1";
+  }
+
+  function toonVolgendeModal() {
+    if (document.querySelector(".vmodal:not([hidden])")) return;
+    var modal = document.querySelector(".vmodal[data-wacht]");
+    if (!modal) return;
+    delete modal.dataset.wacht;
+    modal.hidden = false;
+    document.body.classList.add("has-modal");
+    var x = modal.querySelector(".vmodal__x");
+    if (x) x.focus();
+  }
+
+  function sluitModal(modal, onthoud) {
     if (!modal || modal.hidden) return;
     modal.hidden = true;
     document.body.classList.remove("has-modal");
     if (onthoud !== false) {
-      try { sessionStorage.setItem("hakiki-vakantie-gezien", "1"); } catch (e) {}
+      try { sessionStorage.setItem(modal.getAttribute("data-gezien"), "1"); } catch (e) {}
     }
+    toonVolgendeModal();
   }
 
   // pop-up sluiten: kruisje, knop, buiten de kaart klikken of Escape
   document.addEventListener("click", function (e) {
-    if (e.target.closest && e.target.closest('[data-role="vmodal-close"]')) sluitVakantieModal();
+    if (e.target.closest && e.target.closest('[data-role="vmodal-close"]')) sluitModal(e.target.closest(".vmodal"));
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") sluitVakantieModal();
+    if (e.key === "Escape") sluitModal(document.querySelector(".vmodal:not([hidden])"));
   });
 
   // vangnet: klik op een uitgeschakelde knop doet niets
@@ -261,6 +322,8 @@
     var now = NOW();
     var st = computeStatus(now);
     paintVakantie(now);
+    paintAfhaal(now);
+    toonVolgendeModal();
     document.querySelectorAll('[data-role="status"]').forEach(function (el) {
       el.classList.toggle("is-open", st.open);
       el.classList.toggle("is-closed", !st.open);

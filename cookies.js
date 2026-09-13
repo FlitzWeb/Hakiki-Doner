@@ -3,7 +3,7 @@
    - keuze blijft 6 maanden staan, daarna vragen we het opnieuw
    - "Cookievoorkeuren" in de footer opent de banner weer
    Let op: dit bestand moet ná main.js geladen worden, zodat we weten
-   of de vakantie-pop-up op dit moment in beeld staat.
+   of er op dit moment een pop-up (vakantie, afhalen) in beeld staat.
 */
 (function () {
   "use strict";
@@ -108,16 +108,20 @@
   }
   if (choice === "rejected") return;
 
-  // Nog geen keuze: banner tonen, maar niet bovenop de vakantie-pop-up.
-  var modal = document.getElementById("vakantie-modal");
-  if (modal && !modal.hidden) {
+  // Nog geen keuze: banner tonen, maar niet bovenop een pop-up (vakantie, afhalen).
+  // Na het sluiten van de ene pop-up kan direct de volgende openen; pas als
+  // er geen enkele meer open staat komt de banner.
+  var openModal = function () { return document.querySelector(".vmodal:not([hidden])"); };
+  if (openModal()) {
     var obs = new MutationObserver(function () {
-      if (modal.hidden) {
+      if (!openModal()) {
         obs.disconnect();
         showBanner();
       }
     });
-    obs.observe(modal, { attributes: true, attributeFilter: ["hidden"] });
+    document.querySelectorAll(".vmodal").forEach(function (m) {
+      obs.observe(m, { attributes: true, attributeFilter: ["hidden"] });
+    });
   } else {
     showBanner();
   }

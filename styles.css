@@ -118,6 +118,36 @@ a.is-disabled { opacity: .45; pointer-events: none; cursor: not-allowed; filter:
 .vmodal__ok { margin-top: 26px; }
 body.has-modal { overflow: hidden; }
 
+/* ---------- afhaalmelding + pop-up (geen bezorging meer) ---------- */
+.notice--afhaal { background: var(--red-deep); }
+
+.vmodal--afhaal .vmodal__card {
+  background: radial-gradient(120% 90% at 50% 0%, var(--red) 0%, var(--red-deep) 70%);
+  color: #fff; border-color: var(--red-deep); border-radius: var(--r-md);
+}
+.vmodal--afhaal .vmodal__card::before { border-color: rgba(255, 255, 255, .55); border-radius: 12px; }
+.vmodal--afhaal .vmodal__x { background: transparent; border-color: rgba(255, 255, 255, .6); color: #fff; }
+.vmodal--afhaal .vmodal__x:hover { background: #fff; color: var(--red-deep); }
+.vmodal--afhaal .vmodal__sep { background: #fff; }
+.vmodal__logo {
+  width: 132px; height: auto; margin: 0 auto 18px;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .35));
+}
+.vmodal__lead { margin: 0 auto 16px; max-width: 30ch; font-size: clamp(1.1rem, 3.2vw, 1.3rem); font-weight: 700; line-height: 1.35; }
+.vmodal--afhaal .vmodal__body { color: rgba(255, 255, 255, .85); }
+.vmodal__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.vmodal__en { margin: 0 auto; max-width: 42ch; font-size: .88rem; line-height: 1.5; color: rgba(255, 255, 255, .8); }
+.vmodal__en strong { color: #fff; }
+.vmodal__link {
+  margin-top: 20px; padding: 6px 4px; background: none; border: 0; cursor: pointer;
+  font: 700 .78rem/1 var(--font-body); letter-spacing: .05em; text-transform: uppercase;
+  color: #fff; text-decoration: underline; text-underline-offset: 4px;
+}
+.vmodal--afhaal :focus-visible { outline-color: #fff; }
+@media (max-width: 560px) {
+  .vmodal__actions .btn { flex: 1 1 100%; }
+}
+
 /* ---------- cookiebanner ---------- */
 .cookie {
   position: fixed; z-index: 90;
