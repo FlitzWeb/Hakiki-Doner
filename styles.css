@@ -278,6 +278,10 @@ body.has-modal { overflow: hidden; }
    ========================================================= */
 .nav { border-bottom: 1px solid var(--line); }
 .nav__links a { white-space: nowrap; }
+/* "zonder korting" als tweede regel in de Thuisbezorgd-knop, naast "Bel -10%" */
+.nav__tb { padding-block: 5px; line-height: 1.15; }
+.nav__tb > span { display: flex; flex-direction: column; align-items: center; }
+.nav__tb-note { font-size: .6rem; letter-spacing: .04em; opacity: .8; }
 .nav__inner {
   max-width: var(--maxw); margin: 0 auto; padding: 16px var(--pad);
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px;
