@@ -231,10 +231,12 @@
     meldenTot: new Date(2026, 10, 1)  // vanaf deze dag geen pop-up meer (1 november 2026)
   };
 
-  /* ---------------- Afhaalkorting ----------------
-     Alles met data-role="korting" (balk, pop-up, sticker in de hero,
-     label bij "Bezoek ons") is alleen zichtbaar zolang de actie loopt.
-     Actie stopt? Zet "tot" op de eerste dag zónder korting. */
+  /* ---------------- Bel & Bespaar (korting bij telefonisch bestellen + afhalen) ----------------
+     Alles met data-role="korting" (balk, pop-up, sticker, Bel & Bespaar-
+     sectie, belbalk onderin, "& bespaar 10%" in de belknoppen) is alleen
+     zichtbaar zolang de actie loopt. NIET geldig via Thuisbezorgd.
+     Actie stopt? Zet "tot" op de eerste dag zónder korting, en pas de
+     <title> en meta-beschrijvingen in index.html aan. */
   var KORTING = {
     procent: 10,
     vanaf: new Date(2026, 9, 1),  // eerste dag van de actie (1 oktober 2026)
@@ -270,8 +272,11 @@
       notice.hidden = fase === "voorbij" && !korting;
       var nl = { vooraf: "Per " + dagNl + " bezorgen wij niet meer aan huis.", actief: "Wij bezorgen niet meer aan huis.", voorbij: "" }[fase];
       var en = { vooraf: "From " + dagEn + " we no longer deliver.", actief: "We no longer deliver.", voorbij: "" }[fase];
-      setText(notice, "afhaal-nl", (nl + " Afhalen kan in Winkelcentrum Woensel.").trim());
-      setText(notice, "afhaal-en", ((korting ? KORTING.procent + "% off when you pick up. " : "") + en + " Takeaway at Winkelcentrum Woensel.").replace("  ", " "));
+      setText(notice, "afhaal-nl", (nl + (korting
+        ? " Bestel telefonisch via 040 248 3606 en haal af in Winkelcentrum Woensel."
+        : " Afhalen kan in Winkelcentrum Woensel.")).trim());
+      setText(notice, "afhaal-en", ((korting ? KORTING.procent + "% off when you order by phone and pick up. " : "") + en +
+        " Takeaway at Winkelcentrum Woensel.").replace("  ", " "));
     }
 
     var modal = document.getElementById("afhaal-modal");

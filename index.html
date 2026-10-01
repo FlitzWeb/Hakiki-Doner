@@ -5,8 +5,10 @@
      nadat de bezoeker toestemming heeft gegeven (AVG/GDPR). -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hakiki Döner · De echte döner in Eindhoven</title>
-<meta name="description" content="Hakiki Döner in Winkelcentrum Woensel, Eindhoven. De echte döner, dürüm, kapsalon en schotels, vers van het spit. Kom afhalen in onze zaak in Winkelcentrum Woensel." />
+<!-- Bel & Bespaar staat ook in titel en beschrijvingen, zodat het in Google
+     opvalt. Loopt de actie af (KORTING in main.js), pas deze dan ook aan. -->
+<title>Hakiki Döner Eindhoven · Bel &amp; Bespaar 10% bij afhalen</title>
+<meta name="description" content="Bel &amp; Bespaar: bestel via 040 248 3606, haal af in Winkelcentrum Woensel en krijg 10% korting. De echte döner, dürüm en kapsalon, vers van het spit." />
 <meta name="theme-color" content="#FAF6EF" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <link rel="canonical" href="https://hakiki.nl/" />
@@ -21,16 +23,16 @@
 <meta property="og:type" content="restaurant" />
 <meta property="og:locale" content="nl_NL" />
 <meta property="og:site_name" content="Hakiki Döner" />
-<meta property="og:title" content="Hakiki Döner · De echte döner in Eindhoven" />
-<meta property="og:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
+<meta property="og:title" content="Hakiki Döner Eindhoven · Bel &amp; Bespaar 10% bij afhalen" />
+<meta property="og:description" content="Bel &amp; Bespaar: bestel telefonisch via 040 248 3606 en krijg 10% korting bij afhalen. De echte döner, vers van het spit, in Winkelcentrum Woensel." />
 <meta property="og:url" content="https://hakiki.nl/" />
 <meta property="og:image" content="https://hakiki.nl/assets/og-hakiki.jpg" />
 <meta property="og:image:alt" content="Logo van Hakiki Döner · de echte döner van Woensel, Eindhoven" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Hakiki Döner · De echte döner in Eindhoven" />
-<meta name="twitter:description" content="De echte döner, dürüm, kapsalon en schotels, vers van het spit. In Winkelcentrum Woensel, Eindhoven." />
+<meta name="twitter:title" content="Hakiki Döner Eindhoven · Bel &amp; Bespaar 10% bij afhalen" />
+<meta name="twitter:description" content="Bel &amp; Bespaar: bestel telefonisch via 040 248 3606 en krijg 10% korting bij afhalen. De echte döner, vers van het spit, in Winkelcentrum Woensel." />
 <meta name="twitter:image" content="https://hakiki.nl/assets/og-hakiki.jpg" />
 
 <link rel="icon" href="assets/hakiki-logo.png" />
@@ -50,7 +52,7 @@
   "@id": "https://hakiki.nl/#restaurant",
   "name": "Hakiki Döner",
   "alternateName": "Hakiki Döner Eindhoven",
-  "description": "Hakiki Döner in Winkelcentrum Woensel, Eindhoven. De echte döner, dürüm, kapsalon, schotels en verse friet, vers van het spit. Kom afhalen in onze zaak in Winkelcentrum Woensel.",
+  "description": "Hakiki Döner in Winkelcentrum Woensel, Eindhoven. De echte döner, dürüm, kapsalon, schotels en verse friet, vers van het spit. Bel & Bespaar: bestel telefonisch via 040 248 3606, haal af en krijg 10% korting.",
   "image": [
     "https://hakiki.nl/assets/og-hakiki.jpg",
     "https://hakiki.nl/assets/photos/hero.jpg"
@@ -140,7 +142,7 @@
 
 <!-- Afhaalmelding: geen bezorging meer + afhaalkorting. Datums in main.js (AFHAAL, KORTING) -->
 <div class="notice notice--afhaal" id="afhaal-notice" hidden>
-  <p class="notice__nl"><span class="deal-pill" data-role="korting"><span data-role="korting-pct">10%</span> korting bij afhalen</span> <span data-role="afhaal-nl"></span></p>
+  <p class="notice__nl"><a class="deal-pill" href="tel:+31402483606" data-role="korting">Bel &amp; bespaar <span data-role="korting-pct">10%</span></a> <span data-role="afhaal-nl"></span></p>
   <p class="notice__en" data-role="afhaal-en"></p>
 </div>
 
@@ -156,17 +158,20 @@
     <p class="vmodal__lead" data-role="amodal-nl-stop"></p>
     <p class="vmodal__lead">U bent van harte welkom om af te halen.</p>
 
-    <div class="deal" data-role="korting">
+    <a class="deal" href="tel:+31402483606" data-role="korting">
+      <span class="deal__kicker">Bel &amp; Bespaar</span>
       <span class="deal__pct"><span data-role="korting-pct">10%</span> korting</span>
-      <span class="deal__txt">als u uw bestelling bij ons afhaalt</span>
-    </div>
+      <span class="deal__txt">als u telefonisch bestelt en afhaalt</span>
+    </a>
 
     <p class="vmodal__dates">Winkelcentrum Woensel 414</p>
 
     <div class="vmodal__actions">
-      <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel: 040 248 3606</a>
+      <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel nu: 040 248 3606</a>
       <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven" target="_blank" rel="noopener">Route plannen →</a>
     </div>
+
+    <p class="vmodal__fine" data-role="korting">Korting geldt niet voor bestellingen via Thuisbezorgd.</p>
 
     <p class="vmodal__team vmodal__team--sign">Mvg Team Hakiki</p>
 
@@ -174,7 +179,7 @@
 
     <p class="vmodal__en" lang="en">
       <strong>Dear customers,</strong> <span data-role="amodal-en-stop"></span>
-      <span data-role="korting">Pick up your order and get <strong><span data-role="korting-pct">10%</span> off</strong>.</span>
+      <span data-role="korting">Order by phone (040 248 3606), pick up and get <strong><span data-role="korting-pct">10%</span> off</strong>.</span>
       You are very welcome at our shop in Winkelcentrum Woensel.
     </p>
 
@@ -240,7 +245,7 @@
         <a href="#reviews">Reviews</a>
         <a href="#vind-ons">Vind ons</a>
         <span class="nav__cta">
-          <a class="btn btn--pill btn--sm" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel</a>
+          <a class="btn btn--pill btn--sm" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel<span data-role="korting"> &minus;<span data-role="korting-pct">10%</span></span></a>
           <a class="btn btn--outline btn--sm" href="#vind-ons" data-role="afhaal-cta">Afhalen</a>
         </span>
       </nav>
@@ -256,7 +261,7 @@
       <a href="#sfeer">Sfeer</a>
       <a href="#reviews">Reviews</a>
       <a href="#vind-ons">Vind ons</a>
-      <a class="btn btn--pill btn--block" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel: 040 248 3606</a>
+      <a class="btn btn--pill btn--block" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel<span data-role="korting"> &amp; bespaar <span data-role="korting-pct">10%</span></span>: 040 248 3606</a>
       <a class="btn btn--outline btn--block" href="https://www.google.com/maps/dir/?api=1&destination=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven" target="_blank" rel="noopener" data-role="afhaal-cta">Afhalen: route plannen</a>
     </nav>
   </header>
@@ -282,10 +287,10 @@
           <figure class="media media--hero">
             <img src="assets/photos/hero.jpg" alt="Hakiki Döner, de zaak in Winkelcentrum Woensel" width="980" height="612" />
           </figure>
-          <!-- Afhaalkorting: zichtbaar zolang KORTING in main.js loopt -->
-          <a class="sticker" href="#vind-ons" data-role="korting">
+          <!-- Bel & Bespaar: zichtbaar zolang KORTING in main.js loopt -->
+          <a class="sticker" href="tel:+31402483606" data-role="korting" aria-label="Bel en bespaar 10 procent: 040 248 3606">
             <span class="sticker__pct" data-role="korting-pct">10%</span>
-            <span class="sticker__txt">korting<br />bij afhalen</span>
+            <span class="sticker__txt">Bel &amp;<br />bespaar</span>
           </a>
         </div>
 
@@ -295,6 +300,29 @@
           <span>Winkelcentrum Woensel 414, Eindhoven</span>
           <span class="hero__meta-sep">·</span>
           <a href="tel:+31402483606">040 248 3606</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEL & BESPAAR (zichtbaar zolang KORTING in main.js loopt) ===== -->
+    <section class="belbespaar" id="bel-en-bespaar" data-role="korting">
+      <div class="container belbespaar__inner">
+        <div class="belbespaar__head">
+          <p class="belbespaar__kicker">Bel &amp; Bespaar</p>
+          <h2 class="belbespaar__title"><span data-role="korting-pct">10%</span> korting als u ons belt</h2>
+          <p class="belbespaar__why">
+            Rechtstreeks bij ons bestellen scheelt ons de kosten van een bestelapp.
+            Dat voordeel krijgt u gewoon terug.
+          </p>
+        </div>
+        <ol class="belbespaar__steps">
+          <li><span class="belbespaar__num">1</span><span><strong>Bel 040 248 3606</strong> en geef uw bestelling door</span></li>
+          <li><span class="belbespaar__num">2</span><span><strong>Wij maken het vers</strong> voor u klaar</span></li>
+          <li><span class="belbespaar__num">3</span><span><strong>Haal af</strong> in Winkelcentrum Woensel en betaal <span data-role="korting-pct">10%</span> minder</span></li>
+        </ol>
+        <div class="belbespaar__cta">
+          <a class="btn btn--pill btn--lg" href="tel:+31402483606"><svg class="btn__ico" width="18" height="18" aria-hidden="true"><use href="#ico-phone"/></svg>Bel nu: 040 248 3606</a>
+          <p class="belbespaar__fine">Geldt voor telefonische afhaalbestellingen. Niet geldig via Thuisbezorgd.</p>
         </div>
       </div>
     </section>
@@ -334,7 +362,7 @@
           <p>Elke dag vers friet, knapperig van buiten, zacht van binnen, precies goed bij een schotel, kapsalon of gewoon als gezinszak.</p>
           <div class="band__actions">
             <a class="btn btn--white" href="#cat-frites">Bekijk onze friet →</a>
-            <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel</a>
+            <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel<span data-role="korting"> &amp; bespaar <span data-role="korting-pct">10%</span></span></a>
             <a class="btn btn--ghost" href="#vind-ons" data-role="afhaal-cta">Kom afhalen →</a>
           </div>
         </div>
@@ -353,6 +381,7 @@
           <p class="section-lead">
             Onze volledige menukaart. De vermelde prijzen zijn richtprijzen; in de zaak hoort u de
             actuele prijzen en alle extra's.
+            <span data-role="korting"><strong>Bel uw bestelling door en krijg <span data-role="korting-pct">10%</span> korting.</strong></span>
           </p>
           <button class="btn btn--pill menu__toggle" id="menu-toggle" type="button" aria-expanded="true" aria-controls="menu-collapse">
             <span class="menu__toggle-label">Verberg de menukaart</span>
@@ -366,7 +395,7 @@
         </div>
 
         <div class="menu__cta">
-          <a class="btn btn--pill btn--lg" href="tel:+31402483606"><svg class="btn__ico" width="18" height="18" aria-hidden="true"><use href="#ico-phone"/></svg>Bel: 040 248 3606</a>
+          <a class="btn btn--pill btn--lg" href="tel:+31402483606"><svg class="btn__ico" width="18" height="18" aria-hidden="true"><use href="#ico-phone"/></svg>Bel<span data-role="korting"> &amp; bespaar <span data-role="korting-pct">10%</span></span>: 040 248 3606</a>
           <a class="btn btn--outline btn--lg" href="https://www.google.com/maps/dir/?api=1&destination=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven" target="_blank" rel="noopener" data-role="afhaal-cta">Kom afhalen: route plannen →</a>
         </div>
       </div>
@@ -422,7 +451,7 @@
       <div class="container find__grid">
         <div class="find__info">
           <h2 class="h2">Bezoek ons in Woensel</h2>
-          <p class="deal-tag" data-role="korting">Afhalen = <span data-role="korting-pct">10%</span> korting</p>
+          <a class="deal-tag" href="tel:+31402483606" data-role="korting">Bel &amp; bespaar <span data-role="korting-pct">10%</span> op uw afhaalbestelling</a>
 
           <div class="find__block">
             <h3>Adres</h3>
@@ -459,7 +488,7 @@
           <img src="assets/hakiki-logo.png" alt="Hakiki Döner" width="150" height="103" />
           <p>De echte döner uit Winkelcentrum Woensel, Eindhoven.</p>
           <div class="footer__cta">
-            <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel: 040 248 3606</a>
+            <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg>Bel<span data-role="korting"> &amp; bespaar <span data-role="korting-pct">10%</span></span>: 040 248 3606</a>
             <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&destination=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven" target="_blank" rel="noopener" data-role="afhaal-cta">Kom afhalen: route →</a>
           </div>
         </div>
@@ -493,6 +522,12 @@
     </div>
   </footer>
 </div>
+
+<!-- Bel & Bespaar-balk: vast onderin op mobiel, zolang KORTING loopt -->
+<a class="belbar" href="tel:+31402483606" data-role="korting">
+  <svg width="18" height="18" aria-hidden="true"><use href="#ico-phone"/></svg>
+  <span><strong>Bel &amp; bespaar <span data-role="korting-pct">10%</span></strong> · 040 248 3606</span>
+</a>
 
 <script src="menu-data.js"></script>
 <script src="main.js"></script>
