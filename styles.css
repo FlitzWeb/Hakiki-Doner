@@ -411,7 +411,8 @@ body.has-modal { overflow: hidden; }
 .belbespaar__cta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
 .belbespaar__cta .btn { font-family: var(--font-deal); background: var(--deal-ink); }
 .belbespaar__cta .btn:hover { background: var(--black); }
-.belbespaar__fine { margin: 0; font-size: .85rem; color: #5e1a14; }
+.belbespaar__fine { margin: 0; font-size: .85rem; line-height: 1.5; color: #5e1a14; }
+.belbespaar__fine a { color: inherit; font-weight: 700; }
 
 /* vaste belbalk onderin, alleen op mobiel */
 .belbar { display: none; }
