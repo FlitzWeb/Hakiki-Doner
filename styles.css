@@ -28,6 +28,11 @@
 
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "Karla", system-ui, -apple-system, sans-serif;
+  /* afhaalmelding + korting (zelfde letter als de flyer) */
+  --font-deal: "Figtree", var(--font-body);
+  --font-sign: "Allura", "Brush Script MT", cursive;
+  --deal: #FFD43B;      /* geel: alleen voor de afhaalkorting */
+  --deal-ink: #8E0F17;
 }
 
 * { box-sizing: border-box; }
@@ -119,9 +124,16 @@ a.is-disabled { opacity: .45; pointer-events: none; cursor: not-allowed; filter:
 body.has-modal { overflow: hidden; }
 
 /* ---------- afhaalmelding + pop-up (geen bezorging meer) ---------- */
-.notice--afhaal { background: var(--red-deep); }
+.notice--afhaal { background: var(--red-deep); font-family: var(--font-deal); padding-block: 11px; }
+.notice--afhaal .notice__nl { font-weight: 600; font-size: .98rem; }
+[data-role="korting"][hidden] { display: none !important; }
+.deal-pill {
+  display: inline-block; margin-right: 8px; padding: 3px 11px 4px; border-radius: var(--pill);
+  background: var(--deal); color: var(--deal-ink); font-weight: 800; letter-spacing: .01em;
+}
 
 .vmodal--afhaal .vmodal__card {
+  font-family: var(--font-deal);
   background: radial-gradient(120% 90% at 50% 0%, var(--red) 0%, var(--red-deep) 70%);
   color: #fff; border-color: var(--red-deep); border-radius: var(--r-md);
 }
@@ -133,6 +145,19 @@ body.has-modal { overflow: hidden; }
   width: 132px; height: auto; margin: 0 auto 18px;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .35));
 }
+.vmodal--afhaal .vmodal__title { font-family: var(--font-deal); font-weight: 800; letter-spacing: -.01em; font-size: clamp(1.7rem, 4.6vw, 2.1rem); }
+.vmodal--afhaal .vmodal__dates { font-weight: 800; }
+.vmodal--afhaal .btn, .vmodal--afhaal .vmodal__link { font-family: var(--font-deal); }
+.vmodal__team--sign { font-family: var(--font-sign); font-weight: 400; font-size: 2.1rem; line-height: 1; margin-top: 18px; }
+.deal {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  margin: 2px auto 20px; padding: 14px 20px 15px; max-width: 320px;
+  background: var(--deal); color: var(--deal-ink); border-radius: 14px;
+  outline: 2px dashed var(--deal-ink); outline-offset: -8px;
+  transform: rotate(-1.5deg); box-shadow: 0 14px 28px -14px rgba(0, 0, 0, .55);
+}
+.deal__pct { font-weight: 900; font-size: clamp(1.9rem, 6vw, 2.4rem); line-height: 1.05; letter-spacing: -.02em; }
+.deal__txt { font-weight: 700; font-size: .92rem; }
 .vmodal__lead { margin: 0 auto 16px; max-width: 30ch; font-size: clamp(1.1rem, 3.2vw, 1.3rem); font-weight: 700; line-height: 1.35; }
 .vmodal--afhaal .vmodal__body { color: rgba(255, 255, 255, .85); }
 .vmodal__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
@@ -337,6 +362,25 @@ body.has-modal { overflow: hidden; }
 }
 .media--hero img {
   transform: scale(1.12) translate(-3%, 4%);
+}
+.hero__media { position: relative; width: 100%; }
+.sticker {
+  --sz: 150px;
+  position: absolute; z-index: 4; top: -22px; right: -14px;
+  width: var(--sz); height: var(--sz); border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--deal); color: var(--deal-ink); text-decoration: none; text-align: center;
+  font-family: var(--font-deal); line-height: 1.1;
+  outline: 2px dashed var(--deal-ink); outline-offset: -9px;
+  box-shadow: 0 18px 32px -16px rgba(0, 0, 0, .55);
+  transform: rotate(10deg); transition: transform .25s ease;
+}
+.sticker:hover { transform: rotate(4deg) scale(1.05); }
+.sticker__pct { font-weight: 900; font-size: 2.7rem; letter-spacing: -.03em; line-height: 1; }
+.sticker__txt { font-weight: 800; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; margin-top: 3px; }
+.deal-tag {
+  display: inline-block; margin: -6px 0 26px; padding: 8px 16px; border-radius: var(--pill);
+  background: var(--deal); color: var(--deal-ink); font-family: var(--font-deal); font-weight: 800; font-size: 1.05rem;
 }
 .hero__meta {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px;
@@ -613,6 +657,12 @@ body.has-modal { overflow: hidden; }
   .hero__title { font-size: clamp(2.2rem, 11vw, 3rem); }
   .circle-cta { --sz: 108px; margin-bottom: -54px; }
   .hero__ctas { margin-bottom: -54px; gap: 14px; }
+  /* op mobiel botst de sticker met de ronde knoppen: naar de onderhoek */
+  .sticker { --sz: 118px; top: auto; bottom: -20px; right: -8px; }
+  .sticker__pct { font-size: 2rem; }
+  .sticker__txt { font-size: .62rem; }
+  .notice--afhaal .notice__en { display: none; }
+  .notice--afhaal .notice__nl { font-size: .9rem; }
   .story__stats { grid-template-columns: 1fr; gap: 12px; text-align: left; }
   .footer__cols { grid-template-columns: 1fr; gap: 26px; }
   .footer__bar { flex-direction: column; align-items: flex-start; }

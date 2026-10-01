@@ -225,11 +225,25 @@
   /* ---------------- Geen bezorging meer, alleen afhalen ----------------
      Balk en pop-up verschijnen en verdwijnen automatisch. Vóór "vanaf"
      is het een aankondiging, daarna een melding; vanaf "meldenTot" is
-     alles weer weg. */
+     de pop-up weg (de balk blijft zolang de afhaalkorting loopt). */
   var AFHAAL = {
     vanaf: new Date(2026, 9, 1),      // eerste dag zonder bezorging (1 oktober 2026)
-    meldenTot: new Date(2026, 10, 1)  // vanaf deze dag geen balk/pop-up meer (1 november 2026)
+    meldenTot: new Date(2026, 10, 1)  // vanaf deze dag geen pop-up meer (1 november 2026)
   };
+
+  /* ---------------- Afhaalkorting ----------------
+     Alles met data-role="korting" (balk, pop-up, sticker in de hero,
+     label bij "Bezoek ons") is alleen zichtbaar zolang de actie loopt.
+     Actie stopt? Zet "tot" op de eerste dag zónder korting. */
+  var KORTING = {
+    procent: 10,
+    vanaf: new Date(2026, 9, 1),  // eerste dag van de actie (1 oktober 2026)
+    tot: null                     // eerste dag zonder korting; null = loopt door
+  };
+
+  function kortingActief(now) {
+    return now >= KORTING.vanaf && (!KORTING.tot || now < KORTING.tot);
+  }
 
   // "vooraf" = aankondiging, "actief" = bezorging gestopt, "voorbij" = niet meer melden
   function afhaalFase(now) {
@@ -240,6 +254,7 @@
 
   function paintAfhaal(now) {
     var fase = afhaalFase(now);
+    var korting = kortingActief(now);
     var dagNl = AFHAAL.vanaf.getDate() + " " + MAAND_NL[AFHAAL.vanaf.getMonth()];
     var dagEn = MAAND_EN[AFHAAL.vanaf.getMonth()] + " " + AFHAAL.vanaf.getDate();
     var setText = function (root, role, text) {
@@ -247,23 +262,22 @@
       if (el) el.textContent = text;
     };
 
+    document.querySelectorAll('[data-role="korting"]').forEach(function (el) { el.hidden = !korting; });
+    document.querySelectorAll('[data-role="korting-pct"]').forEach(function (el) { el.textContent = KORTING.procent + "%"; });
+
     var notice = document.getElementById("afhaal-notice");
     if (notice) {
-      notice.hidden = fase === "voorbij";
-      setText(notice, "afhaal-nl", (fase === "vooraf" ? "Per " + dagNl + " bezorgen wij niet meer aan huis." : "Wij bezorgen niet meer aan huis.") +
-              " Afhalen kan in Winkelcentrum Woensel.");
-      setText(notice, "afhaal-en", (fase === "vooraf" ? "From " + dagEn + " we no longer deliver." : "We no longer deliver.") +
-              " Takeaway at Winkelcentrum Woensel.");
+      notice.hidden = fase === "voorbij" && !korting;
+      var nl = { vooraf: "Per " + dagNl + " bezorgen wij niet meer aan huis.", actief: "Wij bezorgen niet meer aan huis.", voorbij: "" }[fase];
+      var en = { vooraf: "From " + dagEn + " we no longer deliver.", actief: "We no longer deliver.", voorbij: "" }[fase];
+      setText(notice, "afhaal-nl", (nl + " Afhalen kan in Winkelcentrum Woensel.").trim());
+      setText(notice, "afhaal-en", ((korting ? KORTING.procent + "% off when you pick up. " : "") + en + " Takeaway at Winkelcentrum Woensel.").replace("  ", " "));
     }
 
     var modal = document.getElementById("afhaal-modal");
     if (modal) {
-      setText(modal, "amodal-nl-stop", fase === "vooraf"
-        ? "Per " + dagNl + " stoppen wij met onze bezorgservice aan huis."
-        : "Sinds " + dagNl + " bezorgen wij niet meer aan huis.");
-      setText(modal, "amodal-en-stop", fase === "vooraf"
-        ? "From " + dagEn + " we will no longer deliver to your home."
-        : "Since " + dagEn + " we no longer deliver to your home.");
+      setText(modal, "amodal-nl-stop", (fase === "vooraf" ? "Per " : "Vanaf ") + dagNl + " stoppen wij met onze bezorgservice aan huis.");
+      setText(modal, "amodal-en-stop", "From " + dagEn + " we no longer deliver to your home.");
       modalWacht(modal, fase !== "voorbij");
     }
   }

@@ -36,7 +36,7 @@
 <link rel="icon" href="assets/hakiki-logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Karla:wght@300;400;500;600;700&family=Figtree:wght@400;500;700;800;900&family=Allura&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 
 <!-- Vercel Web Analytics -->
@@ -138,9 +138,9 @@
   </div>
 </div>
 
-<!-- Afhaalmelding: geen bezorging meer. Datums in main.js (AFHAAL) -->
+<!-- Afhaalmelding: geen bezorging meer + afhaalkorting. Datums in main.js (AFHAAL, KORTING) -->
 <div class="notice notice--afhaal" id="afhaal-notice" hidden>
-  <p class="notice__nl" data-role="afhaal-nl"></p>
+  <p class="notice__nl"><span class="deal-pill" data-role="korting"><span data-role="korting-pct">10%</span> korting bij afhalen</span> <span data-role="afhaal-nl"></span></p>
   <p class="notice__en" data-role="afhaal-en"></p>
 </div>
 
@@ -154,6 +154,12 @@
 
     <h2 class="vmodal__title" id="amodal-title">Beste klanten,</h2>
     <p class="vmodal__lead" data-role="amodal-nl-stop"></p>
+
+    <div class="deal" data-role="korting">
+      <span class="deal__pct"><span data-role="korting-pct">10%</span> korting</span>
+      <span class="deal__txt">als u uw bestelling bij ons afhaalt</span>
+    </div>
+
     <p class="vmodal__body">Voor afhalen bent u van harte welkom in onze zaak in</p>
     <p class="vmodal__dates">Winkelcentrum Woensel 414</p>
 
@@ -162,13 +168,14 @@
       <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven" target="_blank" rel="noopener">Route plannen →</a>
     </div>
 
-    <p class="vmodal__team">Met vriendelijke groet, Team Hakiki</p>
+    <p class="vmodal__team vmodal__team--sign">Mvg Team Hakiki</p>
 
     <hr class="vmodal__sep" />
 
     <p class="vmodal__en" lang="en">
       <strong>Dear customers,</strong> <span data-role="amodal-en-stop"></span>
-      For takeaway you are very welcome at our shop in Winkelcentrum Woensel.
+      <span data-role="korting">Pick up your order and get <strong><span data-role="korting-pct">10%</span> off</strong>.</span>
+      You are very welcome at our shop in Winkelcentrum Woensel.
     </p>
 
     <button class="vmodal__link" type="button" data-role="vmodal-close">Sluiten / Close</button>
@@ -271,9 +278,16 @@
           </a>
         </div>
 
-        <figure class="media media--hero">
-          <img src="assets/photos/hero.jpg" alt="Hakiki Döner, de zaak in Winkelcentrum Woensel" width="980" height="612" />
-        </figure>
+        <div class="hero__media">
+          <figure class="media media--hero">
+            <img src="assets/photos/hero.jpg" alt="Hakiki Döner, de zaak in Winkelcentrum Woensel" width="980" height="612" />
+          </figure>
+          <!-- Afhaalkorting: zichtbaar zolang KORTING in main.js loopt -->
+          <a class="sticker" href="#vind-ons" data-role="korting">
+            <span class="sticker__pct" data-role="korting-pct">10%</span>
+            <span class="sticker__txt">korting<br />bij afhalen</span>
+          </a>
+        </div>
 
         <div class="hero__meta">
           <span class="status" data-role="status"><span class="status__dot"></span><span class="status__text">Openingstijden</span></span>
@@ -408,6 +422,7 @@
       <div class="container find__grid">
         <div class="find__info">
           <h2 class="h2">Bezoek ons in Woensel</h2>
+          <p class="deal-tag" data-role="korting">Afhalen = <span data-role="korting-pct">10%</span> korting</p>
 
           <div class="find__block">
             <h3>Adres</h3>
