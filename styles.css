@@ -158,7 +158,8 @@ body.has-modal { overflow: hidden; }
 }
 .deal__pct { font-weight: 900; font-size: clamp(1.9rem, 6vw, 2.4rem); line-height: 1.05; letter-spacing: -.02em; }
 .deal__txt { font-weight: 700; font-size: .92rem; }
-.vmodal__lead { margin: 0 auto 16px; max-width: 30ch; font-size: clamp(1.1rem, 3.2vw, 1.3rem); font-weight: 700; line-height: 1.35; }
+.vmodal__lead + .vmodal__lead { margin-top: -10px; }
+.vmodal__lead { margin: 0 auto 16px; max-width: 30ch; text-wrap: balance; font-size: clamp(1.1rem, 3.2vw, 1.3rem); font-weight: 700; line-height: 1.35; }
 .vmodal--afhaal .vmodal__body { color: rgba(255, 255, 255, .85); }
 .vmodal__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
 .vmodal__en { margin: 0 auto; max-width: 42ch; font-size: .88rem; line-height: 1.5; color: rgba(255, 255, 255, .8); }

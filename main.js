@@ -278,10 +278,10 @@
     if (modal) {
       setText(modal, "amodal-nl-stop", fase === "vooraf"
         ? "Per " + dagNl + " stoppen wij met onze bezorgservice aan huis."
-        : "Sinds " + dagNl + " bezorgen wij niet meer aan huis.");
+        : "Per " + dagNl + " bezorgen wij niet meer aan huis.");
       setText(modal, "amodal-en-stop", fase === "vooraf"
         ? "From " + dagEn + " we will no longer deliver to your home."
-        : "Since " + dagEn + " we no longer deliver to your home.");
+        : "As of " + dagEn + " we no longer deliver to your home.");
       modalWacht(modal, fase !== "voorbij");
     }
   }
