@@ -14,6 +14,25 @@
 (function () {
   "use strict";
 
+  // Eigen bezoeken uitsluiten: open één keer site.nl/?nietmeetellen op elk
+  // apparaat/browser (?weermeetellen zet het terug). Umami leest
+  // "umami.disabled" pas bij het versturen, dus ook dit bezoek telt al niet.
+  try {
+    var q = location.search;
+    var msg = null;
+    if (/[?&]nietmeetellen\b/.test(q)) {
+      localStorage.setItem("umami.disabled", "1");
+      msg = "Deze browser telt niet meer mee in de statistieken.";
+    } else if (/[?&]weermeetellen\b/.test(q)) {
+      localStorage.removeItem("umami.disabled");
+      msg = "Deze browser telt weer mee in de statistieken.";
+    }
+    if (msg) {
+      history.replaceState(null, "", location.pathname + location.hash);
+      setTimeout(function () { alert(msg); }, 300);
+    }
+  } catch (e) {}
+
   var RULES = [
     ["call", /^tel:/i],
     ["email", /^mailto:/i],
