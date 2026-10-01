@@ -208,9 +208,9 @@
       modalWacht(modal, fase !== "voorbij");
     }
 
-    // bestelknoppen dimmen zolang de zaak dicht is
+    // afhaalknoppen dimmen zolang de zaak dicht is
     var dicht = fase === "dicht";
-    document.querySelectorAll('a[href*="thuisbezorgd"]').forEach(function (a) {
+    document.querySelectorAll('[data-role="afhaal-cta"]').forEach(function (a) {
       a.classList.toggle("is-disabled", dicht);
       if (dicht) {
         a.setAttribute("aria-disabled", "true");
