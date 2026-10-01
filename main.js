@@ -276,8 +276,12 @@
 
     var modal = document.getElementById("afhaal-modal");
     if (modal) {
-      setText(modal, "amodal-nl-stop", (fase === "vooraf" ? "Per " : "Vanaf ") + dagNl + " stoppen wij met onze bezorgservice aan huis.");
-      setText(modal, "amodal-en-stop", "From " + dagEn + " we no longer deliver to your home.");
+      setText(modal, "amodal-nl-stop", fase === "vooraf"
+        ? "Per " + dagNl + " stoppen wij met onze bezorgservice aan huis."
+        : "Sinds " + dagNl + " bezorgen wij niet meer aan huis.");
+      setText(modal, "amodal-en-stop", fase === "vooraf"
+        ? "From " + dagEn + " we will no longer deliver to your home."
+        : "Since " + dagEn + " we no longer deliver to your home.");
       modalWacht(modal, fase !== "voorbij");
     }
   }
