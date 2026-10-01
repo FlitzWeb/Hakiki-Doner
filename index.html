@@ -429,9 +429,14 @@
         </div>
 
         <div class="find__map">
-          <iframe title="Kaart met de locatie van Hakiki Döner in Winkelcentrum Woensel, Eindhoven"
-            src="https://www.google.com/maps?q=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven&output=embed"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <!-- Statische kaart (tools/build-map.py) i.p.v. een Google-iframe: geen cookies, sneller -->
+          <a class="find__map-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven" target="_blank" rel="noopener" data-flitz-where="kaart">
+            <img src="assets/map-woensel.jpg" width="760" height="640" loading="lazy" decoding="async"
+              alt="Kaart van Winkelcentrum Woensel in Eindhoven met de locatie van Hakiki Döner en de parkeerplaatsen eromheen" />
+            <span class="find__pin" aria-hidden="true"><span>Hakiki Döner</span></span>
+            <span class="find__map-cta">Open in Google Maps →</span>
+          </a>
+          <a class="find__map-credit" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>
         </div>
       </div>
     </section>
