@@ -265,6 +265,7 @@
     };
 
     document.querySelectorAll('[data-role="korting"]').forEach(function (el) { el.hidden = !korting; });
+    document.querySelectorAll('[data-role="korting-uit"]').forEach(function (el) { el.hidden = korting; });
     document.querySelectorAll('[data-role="korting-pct"]').forEach(function (el) { el.textContent = KORTING.procent + "%"; });
 
     var notice = document.getElementById("afhaal-notice");

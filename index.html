@@ -273,13 +273,12 @@
         <h1 class="hero__title"><em>De echte</em> döner<br />van Woensel</h1>
 
         <div class="hero__ctas">
-          <a class="circle-cta" href="tel:+31402483606">
-            <span>Bel<br />ons</span>
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><use href="#ico-phone"/></svg>
-          </a>
-          <a class="circle-cta" href="#vind-ons" data-role="afhaal-cta">
-            <span>Kom<br />afhalen</span>
-            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 8h14l-1 12H6L5 8zM9 8V7a3 3 0 0 1 6 0v1"/></svg>
+          <!-- Eén centrale belknop; tijdens de actie met de korting erin -->
+          <a class="circle-cta circle-cta--main" href="tel:+31402483606" aria-label="Bel ons: 040 248 3606">
+            <span class="circle-cta__kicker" data-role="korting">Bel &amp; bespaar</span>
+            <span class="circle-cta__pct" data-role="korting"><span data-role="korting-pct">10%</span></span>
+            <span data-role="korting-uit">Bel<br />ons</span>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><use href="#ico-phone"/></svg>
           </a>
         </div>
 

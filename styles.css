@@ -363,7 +363,18 @@ body.has-modal { overflow: hidden; }
   transition: transform .25s ease, background-color .2s ease;
 }
 .circle-cta:hover { background: var(--red-deep); transform: scale(1.06) rotate(-3deg); }
-.hero__ctas { display: flex; justify-content: center; gap: 20px; margin-bottom: -65px; position: relative; z-index: 3; }
+.hero__ctas { display: flex; justify-content: center; gap: 20px; margin-bottom: -84px; position: relative; z-index: 3; }
+.circle-cta--main { --sz: 168px; gap: 2px; font-family: var(--font-deal); }
+.circle-cta__kicker { font-weight: 800; font-size: .78rem; letter-spacing: .08em; }
+.circle-cta__pct { font-weight: 900; font-size: 3rem; line-height: 1; letter-spacing: -.03em; color: var(--deal); }
+.circle-cta--main svg { margin-top: 4px; }
+/* gele puls rond de belknop, alleen als er korting is */
+.circle-cta--main:has(.circle-cta__pct:not([hidden]))::after {
+  content: ""; position: absolute; inset: -6px; border-radius: 50%;
+  border: 3px solid var(--deal); animation: bel-puls 2.2s ease-out infinite; pointer-events: none;
+}
+@keyframes bel-puls { 0% { transform: scale(.94); opacity: 1; } 100% { transform: scale(1.18); opacity: 0; } }
+[data-role="korting-uit"][hidden] { display: none !important; }
 .hero__ctas .circle-cta { margin-bottom: 0; }
 
 .media--hero {
@@ -708,7 +719,10 @@ body.has-modal { overflow: hidden; }
 @media (max-width: 560px) {
   .hero__title { font-size: clamp(2.2rem, 11vw, 3rem); }
   .circle-cta { --sz: 108px; margin-bottom: -54px; }
-  .hero__ctas { margin-bottom: -54px; gap: 14px; }
+  .hero__ctas { margin-bottom: -70px; gap: 14px; }
+  .circle-cta--main { --sz: 140px; }
+  .circle-cta__pct { font-size: 2.5rem; }
+  .circle-cta__kicker { font-size: .68rem; }
   /* op mobiel botst de sticker met de ronde knoppen: naar de onderhoek */
   .sticker { --sz: 118px; top: auto; bottom: -20px; right: -8px; }
   .sticker__pct { font-size: 2rem; }
@@ -725,4 +739,5 @@ body.has-modal { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: .01ms !important; }
   .polaroid:nth-child(odd), .polaroid:nth-child(even) { transform: none; }
+  .circle-cta--main::after { animation: none !important; }
 }
