@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="nl">
 <head>
-<!-- Microsoft Clarity wordt NIET hier geladen: cookies.js laadt de tag pas
-     nadat de bezoeker toestemming heeft gegeven (AVG/GDPR). -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- Bel & Bespaar staat ook in titel en beschrijvingen, zodat het in Google
@@ -184,46 +182,6 @@
     </p>
 
     <button class="vmodal__link" type="button" data-role="vmodal-close">Sluiten / Close</button>
-  </div>
-</div>
-
-<!-- Cookiebanner: verschijnt zolang er nog geen keuze is gemaakt (zie cookies.js) -->
-<div class="cookie" id="cookie-banner" role="region" aria-label="Cookietoestemming" hidden>
-  <div class="cookie__card">
-    <div class="cookie__text">
-      <h2 class="cookie__title">Even over cookies</h2>
-      <p class="cookie__body">
-        Wij gebruiken statistiekcookies van Microsoft Clarity om te zien hoe onze site
-        gebruikt wordt, zodat we hem beter kunnen maken. Dat doen we alleen met uw toestemming.
-      </p>
-      <p class="cookie__en">We use Microsoft Clarity analytics cookies, only if you agree.</p>
-
-      <details class="cookie__details">
-        <summary>Wat slaan we precies op?</summary>
-        <div class="cookie__details-body">
-          <p>
-            <strong>Noodzakelijk (altijd actief).</strong> Uw cookiekeuze en het al gelezen zijn
-            van onze meldingen (vakantie, afhalen). Deze blijven in uw eigen browser en gaan niet naar derden.
-          </p>
-          <p>
-            <strong>Statistiek (alleen na akkoord).</strong> Microsoft Clarity plaatst de cookies
-            <code>_clck</code> en <code>_clsk</code> en registreert anoniem welke pagina's en knoppen
-            u gebruikt en hoe u scrolt. Bewaartermijn: maximaal 1 jaar. Meer weten?
-            <a href="https://privacy.microsoft.com/nl-nl/privacystatement" target="_blank" rel="noopener">Privacyverklaring van Microsoft</a>.
-          </p>
-          <p>
-            Bezoekaantallen meten we daarnaast met Vercel Analytics; dat werkt zonder cookies
-            en zonder persoonsgegevens. Alles op een rij in onze
-            <a href="privacy.html">privacy- &amp; cookieverklaring</a>.
-          </p>
-        </div>
-      </details>
-    </div>
-
-    <div class="cookie__actions">
-      <button class="btn btn--pill cookie__btn" type="button" data-role="cookie-accept">Accepteren</button>
-      <button class="btn btn--outline cookie__btn" type="button" data-role="cookie-reject">Alleen noodzakelijk</button>
-    </div>
   </div>
 </div>
 
@@ -513,8 +471,7 @@
       <div class="footer__bar">
         <span>© <span data-role="year"></span> Hakiki Döner</span>
         <span class="footer__legal">
-          <a href="privacy.html">Privacy &amp; cookies</a>
-          <button class="footer__link" type="button" data-role="cookie-settings">Cookievoorkeuren</button>
+          <a href="privacy.html">Privacy</a>
         </span>
         <a href="#top">Terug naar boven ↑</a>
       </div>
@@ -530,7 +487,7 @@
 
 <script src="menu-data.js"></script>
 <script src="main.js"></script>
-<!-- na main.js: de cookiebanner wacht tot de pop-ups gesloten zijn -->
+<!-- ruimt oude Clarity-cookies op van bezoekers die ooit "Accepteren" kozen -->
 <script src="cookies.js"></script>
 
 <!-- Umami (cookievrij) + FlitzWeb klantacties: bellen, bestellen, route -->
