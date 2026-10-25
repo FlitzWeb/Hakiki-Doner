@@ -65,8 +65,13 @@
 
   function send(name, el) {
     try {
+      var data = { where: where(el), page: location.pathname };
       if (window.umami && typeof window.umami.track === "function") {
-        window.umami.track(name, { where: where(el), page: location.pathname });
+        window.umami.track(name, data);
+      }
+      // FlitzWeb Studio (studio.flitzweb.nl/t.js)
+      if (window.flitz && typeof window.flitz.track === "function") {
+        window.flitz.track(name, data);
       }
     } catch (e) {}
   }
