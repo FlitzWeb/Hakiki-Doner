@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/hakikimenupdf.pdf", "destination": "/#menu", "permanent": true }
+  ]
+}
