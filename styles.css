@@ -1,3 +1,10 @@
+/* Self-hosted fonts (latin subset, from Google Fonts, OFL). No requests to Google = no IP sharing (AVG). */
+@font-face { font-family: "Allura"; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/fonts/allura-latin.woff2") format("woff2"); }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 400 900; font-display: swap; src: url("assets/fonts/figtree-latin.woff2") format("woff2"); }
+@font-face { font-family: "Karla"; font-style: normal; font-weight: 300 700; font-display: swap; src: url("assets/fonts/karla-latin.woff2") format("woff2"); }
+@font-face { font-family: "Playfair Display"; font-style: italic; font-weight: 400 900; font-display: swap; src: url("assets/fonts/playfairdisplay-italic-latin.woff2") format("woff2"); }
+@font-face { font-family: "Playfair Display"; font-style: normal; font-weight: 400 900; font-display: swap; src: url("assets/fonts/playfairdisplay-latin.woff2") format("woff2"); }
+
 /* ============================================================
    HAKIKI DÖNER - editorial restaurant style (Drizzle-inspired)
    Recolored to brand: black frame · warm white page · Hakiki red

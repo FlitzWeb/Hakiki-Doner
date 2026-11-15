@@ -34,13 +34,10 @@
 <meta name="twitter:image" content="https://hakiki.nl/assets/og-hakiki.jpg" />
 
 <link rel="icon" href="assets/hakiki-logo.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Karla:wght@300;400;500;600;700&family=Figtree:wght@400;500;700;800;900&family=Allura&display=swap" rel="stylesheet" />
+<link rel="preload" href="assets/fonts/karla-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/playfairdisplay-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="styles.css" />
 
-<!-- Vercel Web Analytics -->
-<script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 
 <!-- Structured data: lokaal restaurant -->
 <script type="application/ld+json">
@@ -150,7 +147,7 @@
   <div class="vmodal__card">
     <button class="vmodal__x" type="button" aria-label="Melding sluiten" data-role="vmodal-close">&times;</button>
 
-    <img class="vmodal__logo" src="assets/hakiki-logo.png" alt="" width="132" height="91" />
+    <img class="vmodal__logo" src="assets/hakiki-logo.webp" alt="" width="132" height="91" />
 
     <h2 class="vmodal__title" id="amodal-title">Beste klanten,</h2>
     <p class="vmodal__lead" data-role="amodal-nl-stop"></p>
@@ -196,7 +193,7 @@
       </nav>
 
       <a class="nav__brand" href="#top" aria-label="Hakiki Döner, naar boven">
-        <img src="assets/hakiki-logo.png" alt="Hakiki Döner" width="120" height="83" />
+        <img src="assets/hakiki-logo.webp" alt="Hakiki Döner" width="120" height="83" />
       </a>
 
       <nav class="nav__links nav__links--right" aria-label="Hoofdmenu rechts">
@@ -241,7 +238,7 @@
 
         <div class="hero__media">
           <figure class="media media--hero">
-            <img src="assets/photos/hero.jpg" alt="Hakiki Döner, de zaak in Winkelcentrum Woensel" width="980" height="612" />
+            <img src="assets/photos/hero.webp" alt="Hakiki Döner, de zaak in Winkelcentrum Woensel" width="980" height="612" />
           </figure>
           <!-- Bel & Bespaar: zichtbaar zolang KORTING in main.js loopt -->
           <a class="sticker" href="tel:+31402483606" data-role="korting" aria-label="Bel en bespaar 10 procent: 040 248 3606">
@@ -287,7 +284,7 @@
     <section class="story" id="verhaal">
       <div class="container story__grid">
         <figure class="media media--story">
-          <img src="assets/photos/interieur.jpg" alt="Binnen bij Hakiki Döner in Winkelcentrum Woensel, met de toonbank en menuborden" width="1200" height="1600" />
+          <img src="assets/photos/interieur.webp" alt="Binnen bij Hakiki Döner in Winkelcentrum Woensel, met de toonbank en menuborden" width="1200" height="1600" loading="lazy" decoding="async" />
         </figure>
         <div class="story__copy">
           <h2 class="h2">Hakiki betekent <span class="serif-it">de echte</span>.</h2>
@@ -324,8 +321,8 @@
           </div>
         </div>
         <div class="band__media">
-          <figure class="media media--band"><img src="assets/photos/friet.jpg" alt="Verse friet, dagelijks vers gesneden" width="481" height="1000" /></figure>
-          <figure class="media media--band"><img src="assets/photos/band-schotel.jpg" alt="Dönerschotel met verse friet" width="1400" height="1050" /></figure>
+          <figure class="media media--band"><img src="assets/photos/friet.webp" alt="Verse friet, dagelijks vers gesneden" width="481" height="1000" loading="lazy" decoding="async" /></figure>
+          <figure class="media media--band"><img src="assets/photos/band-schotel.webp" alt="Dönerschotel met verse friet" width="1400" height="1050" loading="lazy" decoding="async" /></figure>
         </div>
       </div>
     </section>
@@ -366,13 +363,13 @@
         </div>
       </div>
       <div class="gallery__row">
-        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/broodje-doner.jpg" alt="Broodje döner" loading="lazy" /><figcaption>Broodje döner</figcaption></figure>
-        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/kapsalon.jpg" alt="Kapsalon" loading="lazy" /><figcaption>Kapsalon</figcaption></figure>
-        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/friet.jpg" alt="Verse friet" loading="lazy" /><figcaption>Verse friet</figcaption></figure>
-        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/durum.jpg" alt="Dürüm" loading="lazy" /><figcaption>Dürüm</figcaption></figure>
-        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/schotel.jpg" alt="Schotel" loading="lazy" /><figcaption>Schotel</figcaption></figure>
-        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/lahmacun.jpg" alt="Lahmacun" loading="lazy" /><figcaption>Lahmacun</figcaption></figure>
-        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/koffie.jpg" alt="Espresso in Lavazza-kopjes met verse koffiebonen" loading="lazy" /><figcaption>Lavazza koffie</figcaption></figure>
+        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/broodje-doner.webp" alt="Broodje döner" loading="lazy" /><figcaption>Broodje döner</figcaption></figure>
+        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/kapsalon.webp" alt="Kapsalon" loading="lazy" /><figcaption>Kapsalon</figcaption></figure>
+        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/friet.webp" alt="Verse friet" loading="lazy" /><figcaption>Verse friet</figcaption></figure>
+        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/durum.webp" alt="Dürüm" loading="lazy" /><figcaption>Dürüm</figcaption></figure>
+        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/schotel.webp" alt="Schotel" loading="lazy" /><figcaption>Schotel</figcaption></figure>
+        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/lahmacun.webp" alt="Lahmacun" loading="lazy" /><figcaption>Lahmacun</figcaption></figure>
+        <figure class="polaroid"><img class="polaroid__img" src="assets/photos/koffie.webp" alt="Espresso in Lavazza-kopjes met verse koffiebonen" loading="lazy" /><figcaption>Lavazza koffie</figcaption></figure>
       </div>
     </section>
 
@@ -431,7 +428,7 @@
         <div class="find__map">
           <!-- Statische kaart (tools/build-map.py) i.p.v. een Google-iframe: geen cookies, sneller -->
           <a class="find__map-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Winkelcentrum+Woensel+414,+5625+AG+Eindhoven" target="_blank" rel="noopener" data-flitz-where="kaart">
-            <img src="assets/map-woensel.jpg" width="760" height="640" loading="lazy" decoding="async"
+            <img src="assets/map-woensel.webp" width="760" height="640" loading="lazy" decoding="async"
               alt="Kaart van Winkelcentrum Woensel in Eindhoven met de locatie van Hakiki Döner en de parkeerplaatsen eromheen" />
             <span class="find__pin" aria-hidden="true"><span>Hakiki Döner</span></span>
             <span class="find__map-cta">Open in Google Maps →</span>
@@ -447,7 +444,7 @@
     <div class="container">
       <div class="footer__top">
         <div class="footer__brand">
-          <img src="assets/hakiki-logo.png" alt="Hakiki Döner" width="150" height="103" />
+          <img src="assets/hakiki-logo.webp" alt="Hakiki Döner" width="150" height="103" />
           <p>De echte döner uit Winkelcentrum Woensel, Eindhoven.</p>
           <div class="footer__cta">
             <a class="btn btn--white" href="tel:+31402483606"><svg class="btn__ico" width="16" height="16" aria-hidden="true"><use href="#ico-phone"/></svg><span>Bel<span data-role="korting"> &amp; bespaar <span data-role="korting-pct">10%</span></span>: 040 248 3606</span></a>
@@ -498,7 +495,7 @@
 <!-- Umami (cookievrij) + FlitzWeb klantacties: bellen, bestellen, route -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="2147b34e-12e9-4442-ab3e-d9d0c65ea421" data-domains="hakiki.nl,www.hakiki.nl"></script>
 <!-- FlitzWeb Studio: cookieless stats -->
-<script defer src="https://studio.flitzweb.nl/t.js" data-site="fw_NgLZsl_mbLcP"></script>
+<script defer src="https://studio.flitzweb.nl/t.js" data-site="fw_NgLZsl_mbLcP" data-domains="hakiki.nl,www.hakiki.nl"></script>
 <script defer src="/flitz-track.js"></script>
 
 <!-- Vercel Web Analytics + Speed Insights -->
