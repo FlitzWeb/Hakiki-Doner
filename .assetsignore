@@ -1,0 +1,14 @@
+# Not part of the website: never publish these.
+.git
+.gitignore
+.assetsignore
+.wrangler
+.vercel
+.DS_Store
+node_modules
+cloudflare
+tools
+wrangler.jsonc
+vercel.json
+*.md
+*.log
