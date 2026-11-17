@@ -1,0 +1,16 @@
+// Cloudflare hosting for hakiki.nl. Push to main = live (Workers Builds runs
+// `npx wrangler deploy`). Other branches, such as `concept`, get their own
+// preview address on workers.dev that never touches hakiki.nl.
+{
+  "name": "hakiki-doner",
+  "main": "./cloudflare/worker.js",
+  "compatibility_date": "2026-11-13",
+  // The site is the repo itself; .assetsignore lists what is not published.
+  "assets": { "directory": "./", "binding": "ASSETS", "html_handling": "none", "not_found_handling": "none", "run_worker_first": true },
+  "workers_dev": false,
+  "preview_urls": true,
+  "routes": [
+    { "pattern": "hakiki.nl", "custom_domain": true },
+    { "pattern": "www.hakiki.nl", "custom_domain": true }
+  ]
+}
