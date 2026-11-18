@@ -9,6 +9,8 @@
   "assets": { "directory": "./", "binding": "ASSETS", "html_handling": "none", "not_found_handling": "none", "run_worker_first": true },
   "workers_dev": false,
   "preview_urls": true,
+  // Needed by Cloudflare's preview builds for other branches (may stay empty).
+  "previews": {},
   "routes": [
     { "pattern": "hakiki.nl", "custom_domain": true },
     { "pattern": "www.hakiki.nl", "custom_domain": true }
