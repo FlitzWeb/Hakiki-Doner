@@ -1,30 +1,36 @@
 /* FlitzWeb klantacties-tracker
    Telt de klikken die er voor een klant toe doen (bellen, bestellen, route,
-   WhatsApp, mail, formulier) en stuurt ze als event naar Umami.
+   WhatsApp, mail, formulier) en stuurt ze als event naar FlitzWeb Studio.
    - Geen cookies, geen persoonsgegevens: alleen "er is op X geklikt".
    - Werkt automatisch op tel:, mailto:, wa.me, Google/Apple Maps en
      bezorgplatforms. Overschrijven of extra knoppen tellen kan met
      data-flitz="order" (of call, directions, reserve, ...) op een link,
      knop of <form>.
-   - Laad dit NA het Umami-script:
-       <script defer src="https://cloud.umami.is/script.js"
-               data-website-id="..." data-domains="klant.nl"></script>
+   - Laad dit VOOR het Studio-script, zodat ?nietmeetellen meteen werkt:
        <script defer src="/flitz-track.js"></script>
+       <script defer src="https://studio.flitzweb.nl/t.js"
+               data-site="..." data-domains="klant.nl"></script>
 */
 (function () {
   "use strict";
 
   // Eigen bezoeken uitsluiten: open één keer site.nl/?nietmeetellen op elk
-  // apparaat/browser (?weermeetellen zet het terug). Umami leest
-  // "umami.disabled" pas bij het versturen, dus ook dit bezoek telt al niet.
+  // apparaat/browser (?weermeetellen zet het terug). De Studio-tracker leest
+  // "flitz-ignore" bij het versturen en laadt na dit script, dus ook dit
+  // bezoek telt al niet.
   try {
     var q = location.search;
     var msg = null;
+    // Wie zich in de Umami-tijd al had uitgesloten, blijft uitgesloten.
+    if (localStorage.getItem("umami.disabled") === "1") {
+      localStorage.setItem("flitz-ignore", "1");
+      localStorage.removeItem("umami.disabled");
+    }
     if (/[?&]nietmeetellen\b/.test(q)) {
-      localStorage.setItem("umami.disabled", "1");
+      localStorage.setItem("flitz-ignore", "1");
       msg = "Deze browser telt niet meer mee in de statistieken.";
     } else if (/[?&]weermeetellen\b/.test(q)) {
-      localStorage.removeItem("umami.disabled");
+      localStorage.removeItem("flitz-ignore");
       msg = "Deze browser telt weer mee in de statistieken.";
     }
     if (msg) {
@@ -66,10 +72,9 @@
   function send(name, el) {
     try {
       var data = { where: where(el), page: location.pathname };
-      if (window.umami && typeof window.umami.track === "function") {
-        window.umami.track(name, data);
-      }
-      // FlitzWeb Studio (studio.flitzweb.nl/t.js)
+      // FlitzWeb Studio (studio.flitzweb.nl/t.js). Alleen window.flitz: het
+      // Studio-script zet zelf ook window.umami als alias, dus beide aanroepen
+      // zou elke klik dubbel tellen.
       if (window.flitz && typeof window.flitz.track === "function") {
         window.flitz.track(name, data);
       }
