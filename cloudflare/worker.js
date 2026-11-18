@@ -19,6 +19,11 @@ export default {
       return Response.redirect(`${url.origin}/#menu`, 308);
     }
 
+    // The privacy page was removed; send old links to the homepage.
+    if (url.pathname === "/privacy.html" || url.pathname === "/privacy") {
+      return Response.redirect(`${url.origin}/`, 301);
+    }
+
     // "/" (and any folder) is its index.html; other pages keep their .html address.
     if (url.pathname.endsWith("/")) {
       url.pathname += "index.html";
