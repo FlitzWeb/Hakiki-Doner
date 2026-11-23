@@ -342,8 +342,11 @@ body.has-modal { overflow: hidden; }
 
 .media--hero {
   width: 100%; aspect-ratio: 980 / 612; margin-top: 0;
-  /* Photo is pre-cropped to this ratio, so show it whole. */
+  /* Photo is pre-cropped to this ratio with the sign centered, so show it whole. */
   --media-hero-pos: center center;
+}
+.media--hero img {
+  transform: scale(1.12) translate(-3%, 4%);
 }
 .hero__media { position: relative; width: 100%; }
 .sticker {
